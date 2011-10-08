@@ -10,8 +10,16 @@
         name="batch_macros"
         for="*"
         permission="zope.Public"
-        class=".browser.BatchMacros"
+        class=".browser.BatchMacrosView"
         template="batch_macros.pt"
         />
+
+    <browser:page
+            name="batchnavigation"
+            for="*"
+            permission="zope.Public"
+            class=".browser.BatchView"
+            template="batchnavigation.pt"
+            />
 
 </configure>
