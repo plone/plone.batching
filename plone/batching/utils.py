@@ -43,7 +43,7 @@ def calculate_pagenumber(elementnumber, batchsize, overlap=0):
     except ZeroDivisionError:
         pagenumber, remainder = divmod(elementnumber, 1)
     if remainder > overlap:
-        pagenumber = pagenumber + 1
+        pagenumber +=  1
     pagenumber = max(pagenumber, 1)
     return pagenumber
 
