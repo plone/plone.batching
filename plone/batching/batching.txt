@@ -9,7 +9,7 @@ with constructing templates.
 A basic batch is created using a few paramenters.
 
   >>> from plone.batching.batch import Batch
-  >>> batch = Batch(
+  >>> batch = Batch.fromPagenumber(
   ... items=range(333), pagesize=10, pagenumber=1, navlistsize=5)
 
 
@@ -37,7 +37,7 @@ We can ask a batch for its size using two different methods. The first is to use
 
 The other is more convenient for use with template.
 
-  >>> batch.size
+  >>> batch.sequence_length
   333
 
 It is also possible to ask for the items on the current page.
@@ -65,11 +65,13 @@ few navigation related methods.
 
 The first we can check is wheter our batch is spannend over multiple pages.
 
-  >>> batch = Batch(items=range(333), pagesize=10, navlistsize=5)
+  >>> batch = Batch.fromPagenumber(
+  ...          items=range(333), pagesize=10, navlistsize=5)
   >>> batch.multiple_pages
   True
 
-  >>> other_batch = Batch(items=range(3), pagesize=7)
+  >>> other_batch = Batch.fromPagenumber(
+  ...          items=range(3))
   >>> other_batch.multiple_pages
   False
 
@@ -105,7 +107,7 @@ batch is not exactly divisable by the pagesize.
   >>> batch.next_item_count
   3
 
-The system meantains a navigation list as well. This is normally used to
+The system maintains a navigation list as well. This is normally used to
 display numbers at the bottom of the screen for quick access to those pages.
 
   >>> batch.pagenumber = 1
@@ -120,7 +122,7 @@ Keep in mind that the navlist centers around the current page when it can.
   
 You can specify the navlist size to be any size you want.
 
-  >>> other_batch = Batch(items=range(333), pagesize=10, pagenumber=10,
+  >>> other_batch = Batch.fromPagenumber(items=range(333), pagesize=10, pagenumber=10,
   ...                     navlistsize=12)
   >>> other_batch.navlist
   [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
