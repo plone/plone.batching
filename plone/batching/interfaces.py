@@ -1,12 +1,14 @@
 from zope.interface import Interface
 import zope.schema
 
+
 class IBatch(Interface):
     """A batch splits up a large number of items over multiple pages"""
 
     size = zope.schema.Int(title=u"The amount of items in the batch")
 
-    firstpage = zope.schema.Int(title=u"The number of the first page (always 1)")
+    firstpage = zope.schema.Int(
+        title=u"The number of the first page (always 1)")
 
     lastpage = zope.schema.Int(title=u"The number of the last page")
 
@@ -26,7 +28,8 @@ class IBatch(Interface):
 
     nextpage = zope.schema.Int(title=u"The number of the nextpage page")
 
-    next_item_count = zope.schema.Int(title=u"The number of items on the next page")
+    next_item_count = zope.schema.Int(
+        title=u"The number of items on the next page")
 
     navlist = zope.schema.List(
         title=u"List of page numbers to be used as a navigation list")

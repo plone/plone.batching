@@ -2,8 +2,7 @@ from zope.interface import implements
 
 from plone.batching.interfaces import IBatch
 from plone.batching.utils import (
-    opt, calculate_leapback, calculate_leapforward,
-    calculate_pagenumber, calculate_pagerange, calculate_quantum_leap_gap)
+    opt, calculate_leapback, calculate_leapforward, calculate_pagenumber)
 
 
 class BaseBatch(object):
@@ -17,15 +16,19 @@ class BaseBatch(object):
     orphan = overlap = 0
     b_start_str = 'b_start'
 
-    def __init__(self, sequence, size, start=0, end=0, orphan=0, overlap=0, pagerange=7):
+    def __init__(self, sequence, size, start=0, end=0, orphan=0, overlap=0,
+                 pagerange=7):
         """ Encapsulate sequence in batches of size
-        sequence    - the data to batch.
-        size        - the number of items in each batch.
-        start       - the first element of sequence to include in batch (0-index)
-        end         - the last element of sequence to include in batch (0-index, optional)
-        orphan      - the next page will be combined with the current page if it does not contain more than orphan elements
-        overlap     - the number of overlapping elements in each batch
-        pagerange   - the number of pages to display in the navigation
+        sequence  - the data to batch.
+        size      - the number of items in each batch.
+        start     - the first element of sequence to include in batch
+                    (0-index)
+        end       - the last element of sequence to include in batch
+                    (0-index, optional)
+        orphan    - the next page will be combined with the current page
+                    if it does not contain more than orphan elements
+        overlap   - the number of overlapping elements in each batch
+        pagerange - the number of pages to display in the navigation
         """
         start += 1
         self._sequence = sequence
@@ -37,7 +40,8 @@ class BaseBatch(object):
         self.initialize(start, end, size)
 
     def initialize(self, start, end, size):
-        start, end, sz = opt(start, end, size, self.orphan, self.sequence_length)
+        start, end, sz = opt(start, end, size, self.orphan,
+                             self.sequence_length)
 
         self.pagesize = sz
         self.start = start
@@ -49,10 +53,12 @@ class BaseBatch(object):
         self.last = self.sequence_length - size
 
         # Set up the total number of pages
-        self.numpages = calculate_pagenumber(self.sequence_length - self.orphan, self.pagesize, self.overlap)
+        self.numpages = calculate_pagenumber(
+            self.sequence_length - self.orphan, self.pagesize, self.overlap)
 
         # Set up the current page number
-        self._pagenumber = calculate_pagenumber(self.start, self.pagesize, self.overlap)
+        self._pagenumber = calculate_pagenumber(
+            self.start, self.pagesize, self.overlap)
 
     @property
     def navlist(self):
@@ -77,7 +83,8 @@ class BaseBatch(object):
 
     @property
     def sequence_length(self):
-        return getattr(self._sequence, 'actual_result_count', len(self._sequence))
+        return getattr(self._sequence, 'actual_result_count',
+                       len(self._sequence))
 
     def __len__(self):
         return self.sequence_length
@@ -94,12 +101,14 @@ class BaseBatch(object):
         if not self.first:
             return None
         return Batch(self._sequence, self._size,
-            self.first - self._size + self.overlap, 0, self.orphan, self.overlap)
+            self.first - self._size + self.overlap, 0, self.orphan,
+            self.overlap)
 
     def __getitem__(self, index):
         actual = getattr(self._sequence, 'actual_result_count', None)
         if actual is not None and actual != len(self._sequence):
-            # optmized batch that contains only the wanted items in the sequence
+            # optmized batch that contains only the wanted items in the
+            # sequence
             return self._sequence[index]
         if index < 0:
             if index + self.end < self.first:
@@ -129,7 +138,7 @@ class BaseBatch(object):
     def items_on_page(self):
         if self.islastpage:
             remainder = self.sequence_length % self.pagesize
-            if remainder == 0:
+            if not remainder:
                 return self.pagesize
             else:
                 return remainder
@@ -197,18 +206,23 @@ class QuantumBatch(BaseBatch):
     leapback = []
     leapforward = []
 
-    def __init__(self, sequence, size, start=0, end=0, orphan=0, overlap=0, pagerange=7, quantumleap=0):
+    def __init__(self, sequence, size, start=0, end=0, orphan=0, overlap=0,
+                 pagerange=7, quantumleap=0):
         """
-        quantumleap - 0 or 1 to indicate if bigger increments should be used in the navigation list for big results.
+        quantumleap - 0 or 1 to indicate if bigger increments should be used
+                      in the navigation list for big results.
         b_start_str - the request variable used for start, default 'b_start'
         """
-        super(QuantumBatch, self).__init__(sequence, size, start, end, orphan, overlap, pagerange)
+        super(QuantumBatch, self).__init__(sequence, size, start, end, orphan,
+                                           overlap, pagerange)
         self.quantumleap = quantumleap
 
     def initialize(self, start, end, size):
         super(QuantumBatch, self).initialize(start, end, size)
         if self.quantumleap:
-            self.leapback = calculate_leapback(self.pagenumber, self.numpages, self.pagerange)
-            self.leapforward = calculate_leapforward(self.pagenumber, self.numpages, self.pagerange)
+            self.leapback = calculate_leapback(
+                self.pagenumber, self.numpages, self.pagerange)
+            self.leapforward = calculate_leapforward(
+                self.pagenumber, self.numpages, self.pagerange)
 
 Batch = BaseBatch
