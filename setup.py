@@ -5,12 +5,13 @@ version = '1.0a1'
 setup(
     name='plone.batching',
     version=version,
-    description="Batching facilities for Plone.",
+    description="Batching facilities used in Plone.",
     long_description=open("README.txt").read() + "\n" +
                      open("CHANGES.txt").read(),
     classifiers=[
-        'Framework :: Plone',
+        'Framework :: Plone :: 4.3',
         'Framework :: Zope2',
+        'Programming Language :: Python :: 2.6',
     ],
     keywords='Plone',
     author='Plone Foundation',
@@ -21,11 +22,7 @@ setup(
     namespace_packages=['plone'],
     include_package_data=True,
     zip_safe=False,
-    install_requires=[
-        'setuptools',
-        'ExtensionClass',
-        'Zope2',
-    ],
+    install_requires=['setuptools'],
     entry_points = '''
           [z3c.autoinclude.plugin]
           target = plone
