@@ -18,7 +18,7 @@
             name="batchnavigation"
             for="*"
             permission="zope.Public"
-            class=".browser.BatchView"
+            class=".browser.PloneBatchView"
             template="batchnavigation.pt"
             />
 

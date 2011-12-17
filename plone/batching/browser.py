@@ -20,6 +20,12 @@ class BatchView(BrowserView):
         return self.template()
     
     def make_link(self, pagenumber):
+        raise NotImplementedError
+
+
+class PloneBatchView(BatchView):
+
+    def make_link(self, pagenumber=None):
         # XXX implement batchformkeys
         batchformkeys = None
         form = self.request.form
