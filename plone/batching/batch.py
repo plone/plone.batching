@@ -1,8 +1,6 @@
-
-
-from plone.batching.interfaces import IBatch
 from zope.interface import implements
 
+from plone.batching.interfaces import IBatch
 from plone.batching.utils import (
     opt, calculate_leapback, calculate_leapforward,
     calculate_pagenumber, calculate_pagerange, calculate_quantum_leap_gap)
@@ -12,8 +10,8 @@ class BaseBatch(object):
     """Create a sequence batch"""
 
     implements(IBatch)
-    
-    size = first= start = end = 0
+
+    size = first = start = end = 0
     navlist = []
     numpages = pagenumber = pagerange = pagenumber = 0
     orphan = overlap = 0
@@ -60,20 +58,21 @@ class BaseBatch(object):
     def navlist(self):
         start = max(self.pagenumber - (self.pagerange / 2), 1)
         end = min(start + self.pagerange - 1, self.lastpage)
-        return range(start, end+1)
+        return range(start, end + 1)
 
     def getPagenumber(self):
         return self._pagenumber
 
     def setPagenumber(self, pagenumber):
-        start = max(0, (pagenumber-1)*self._size) + 1
+        start = max(0, (pagenumber - 1) * self._size) + 1
         self.initialize(start, 0, self._size)
         self._pagenumber = pagenumber
+
     pagenumber = property(getPagenumber, setPagenumber)
 
     @classmethod
     def fromPagenumber(cls, items, pagesize=20, pagenumber=1, navlistsize=5):
-        start = max(0, (pagenumber-1)*pagesize)
+        start = max(0, (pagenumber - 1) * pagesize)
         return cls(items, pagesize, start, pagerange=navlistsize)
 
     @property
@@ -82,13 +81,13 @@ class BaseBatch(object):
 
     def __len__(self):
         return self.sequence_length
-    
+
     @property
     def next(self):
         if self.end >= (self.last + self.pagesize):
             return None
         return Batch(self._sequence, self._size, self.end - self.overlap,
-                              0, self.orphan, self.overlap)
+            0, self.orphan, self.overlap)
 
     @property
     def previous(self):
@@ -186,7 +185,7 @@ class BaseBatch(object):
 
     @property
     def next_pages(self):
-        return self.navlist[self.navlist.index(self.pagenumber)+1:]
+        return self.navlist[self.navlist.index(self.pagenumber) + 1:]
 
     @property
     def second_page_not_in_navlist(self):
@@ -194,7 +193,6 @@ class BaseBatch(object):
 
 
 class QuantumBatch(BaseBatch):
-
     quantumleap = False
     leapback = []
     leapforward = []

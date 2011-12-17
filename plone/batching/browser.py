@@ -4,11 +4,13 @@ from ZTUtils import  make_query
 
 BatchTemplate = ViewPageTemplateFile("batchnavigation.pt")
 
+
 class BatchMacrosView(BrowserView):
 
     @property
     def macros(self):
         return self.template.macros
+
 
 class BatchView(BrowserView):
     """ View class for browser navigation  (classic) """

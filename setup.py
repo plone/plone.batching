@@ -23,7 +23,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=['setuptools'],
-    entry_points = '''
+    entry_points='''
           [z3c.autoinclude.plugin]
           target = plone
       ''',
