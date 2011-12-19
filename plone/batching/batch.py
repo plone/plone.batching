@@ -136,14 +136,7 @@ class BaseBatch(object):
 
     @property
     def items_on_page(self):
-        if self.islastpage:
-            remainder = self.sequence_length % self.pagesize
-            if not remainder:
-                return self.pagesize
-            else:
-                return remainder
-        else:
-            return self.pagesize
+        return self.length
 
     @property
     def multiple_pages(self):
@@ -159,7 +152,7 @@ class BaseBatch(object):
 
     @property
     def items_not_on_page(self):
-        return self._sequence[:self.start] + self._sequence[self.end:]
+        return self._sequence[:self.first] + self._sequence[self.end:]
 
     @property
     def next_item_count(self):
@@ -213,9 +206,9 @@ class QuantumBatch(BaseBatch):
                       in the navigation list for big results.
         b_start_str - the request variable used for start, default 'b_start'
         """
+        self.quantumleap = quantumleap
         super(QuantumBatch, self).__init__(sequence, size, start, end, orphan,
                                            overlap, pagerange)
-        self.quantumleap = quantumleap
 
     def initialize(self, start, end, size):
         super(QuantumBatch, self).initialize(start, end, size)

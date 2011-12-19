@@ -2,35 +2,116 @@ from zope.component.testing import setUp, tearDown
 import unittest
 import doctest
 
-from plone.batching.utils import calculate_pagerange, opt
+from plone.batching.batch import BaseBatch, QuantumBatch
+from plone.batching.utils import (
+    calculate_pagenumber, calculate_pagerange, opt, calculate_quantum_leap_gap,
+    calculate_leapback, calculate_leapforward)
 
 
-class TestUtils(unittest.TestCase):
+class TestUtilsOpt(unittest.TestCase):
     """ Test utils of plone.batching
     """
 
-    def test_opt(self):
+    def test_opt_standard(self):
         self.assertEqual(opt(1, 0, 5, 0, 100), (1, 5, 5))
+
+
+    def test_opt_overlap(self):
         # overlap
         self.assertEqual(opt(1, 0, 5, 2, 7), (1, 7, 5))
 
+    def test_opt_nosize_start_end(self):
+        # no size given, but valid start and end parameters
+        self.assertEqual(opt(1, 31, 0, 0, 100), (1, 31, 31))
+
+    def test_opt_nosize_noend(self):
+        # no size and no valid start and end parameters given
+        self.assertEqual(opt(1, 0, 0, 0, 100), (1, 25, 25))
+
+    def test_opt_start_bigger_length(self):
+        # start > length
+        self.assertEqual(opt(20, 0, 5, 0, 10), (10, 10, 5))
+
+    def test_opt_end_smaller_start(self):
+        # end > start
+        self.assertEqual(opt(20, 10, 5, 0, 100), (20, 20, 5))
+
+
+class TestUtils(unittest.TestCase):
+
     def test_calculate_pagenumber(self):
-        pass
+        self.assertEqual(calculate_pagenumber(5, 2), 3)
+
+    def test_calculate_pagenumber_zerobatch(self):
+        self.assertEqual(calculate_pagenumber(5, 0), 5)
+
+    def test_calculate_pagerange(self):
+        self.assertEqual(calculate_pagerange(3, 10, 2), (1, 3, 4))
 
     def test_calculate_quantum_leap_gap(self):
-        pass
+        self.assertEqual(calculate_quantum_leap_gap(20, 2), 5)
 
     def test_calculate_leapback(self):
-        pass
+        self.assertEqual(calculate_leapback(73, 100, 2), [28, 43, 58])
 
     def test_calculate_leapforward(self):
-        pass
+        self.assertEqual(calculate_leapforward(3, 100, 2), [18, 33, 48])
 
+class TestBatch(unittest.TestCase):
+
+    def test_previous_first(self):
+        batch = BaseBatch(range(20), 5)
+        self.assertFalse(batch.previous)
+
+    def test_previous(self):
+        batch = BaseBatch(range(20), 5, 5)
+        prev = batch.previous
+        self.assertTrue(isinstance(prev, BaseBatch))
+        self.assertEqual(prev.start, 1)
+
+    def test_getitem_resultcount(self):
+        class MySeq(list):
+
+            @property
+            def actual_result_count(self):
+                return len(self) + 1
+
+
+        batch = BaseBatch(MySeq(range(20)), 5)
+        self.assertEqual(batch[3], 3)
+
+    def test_getitem_negative(self):
+        batch = BaseBatch(range(20), 5)
+        self.assertEqual(batch[-4], 1)
+        self.assertRaises(IndexError, batch.__getitem__, -6)
+
+    def test_lastpage(self):
+        batch = BaseBatch(range(20), 5)
+        self.assertFalse(batch.islastpage)
+        lastbatch = BaseBatch(range(20), 5, start=batch.last)
+        self.assertTrue(lastbatch.islastpage)
+
+    def test_items_not_on_page(self):
+        batch = BaseBatch(range(20), 5, start=5)
+        self.assertEqual(batch.items_not_on_page,
+            [0, 1, 2, 3, 4, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19])
+        self.assertEqual(list(batch), [5, 6, 7, 8, 9])
+
+
+class TestQuantumBatch(unittest.TestCase):
+
+    def test_quantumbatch(self):
+        qbatch = QuantumBatch(range(200), 3, start=120, quantumleap=1)
+        self.assertEqual(qbatch.leapback, [18, 28])
+        self.assertEqual(qbatch.leapforward, [54])
 
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTests([
+        unittest.makeSuite(TestUtilsOpt),
         unittest.makeSuite(TestUtils),
+        unittest.makeSuite(TestBatch),
+        unittest.makeSuite(TestQuantumBatch),
         doctest.DocFileSuite('batching.txt',
             package='plone.batching',
             optionflags=doctest.ELLIPSIS | doctest.REPORT_ONLY_FIRST_FAILURE,

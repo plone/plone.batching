@@ -8,28 +8,14 @@ def opt(start, end, size, orphan, sequence_length):
     # Seems to work now.
     length = sequence_length
     if size < 1:
-        if start > 0 and end > 0 and end >= start:
+        if start > 0 < end >= start:
             size = end + 1 - start
         else:
             size = 25
-    if start > 0:
-        if start > length:
-            start = length
-        if end > 0:
-            if end < start:
-                end = start
-        else:
-            end = start + size - 1
-            if (end + orphan) >= length:
-                end = length
-    elif end > 0:
-        if  end > length:
-            end = length
-        start = end + 1 - size
-        if start - 1 < orphan:
-            start = 1
+    start = min(start, length)
+    if end > 0:
+        end = max(end, start)
     else:
-        start = 1
         end = start + size - 1
         if (end + orphan) >= length:
             end = length
