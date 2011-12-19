@@ -15,7 +15,6 @@ class TestUtilsOpt(unittest.TestCase):
     def test_opt_standard(self):
         self.assertEqual(opt(1, 0, 5, 0, 100), (1, 5, 5))
 
-
     def test_opt_overlap(self):
         # overlap
         self.assertEqual(opt(1, 0, 5, 2, 7), (1, 7, 5))
@@ -57,6 +56,7 @@ class TestUtils(unittest.TestCase):
     def test_calculate_leapforward(self):
         self.assertEqual(calculate_leapforward(3, 100, 2), [18, 33, 48])
 
+
 class TestBatch(unittest.TestCase):
 
     def test_previous_first(self):
@@ -75,7 +75,6 @@ class TestBatch(unittest.TestCase):
             @property
             def actual_result_count(self):
                 return len(self) + 1
-
 
         batch = BaseBatch(MySeq(range(20)), 5)
         self.assertEqual(batch[3], 3)
@@ -104,6 +103,7 @@ class TestQuantumBatch(unittest.TestCase):
         qbatch = QuantumBatch(range(200), 3, start=120, quantumleap=1)
         self.assertEqual(qbatch.leapback, [18, 28])
         self.assertEqual(qbatch.leapforward, [54])
+
 
 def test_suite():
     suite = unittest.TestSuite()
