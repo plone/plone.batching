@@ -195,6 +195,12 @@ class BaseBatch(object):
 
 
 class QuantumBatch(BaseBatch):
+    """ A base class for quantum batches
+
+        This batch provides quantum link navigation for large resultsets.
+        (e.g. next 1 10 100 ... results )
+    """
+
     quantumleap = False
     leapback = []
     leapforward = []
