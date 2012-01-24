@@ -26,9 +26,10 @@ def calculate_pagenumber(elementnumber, batchsize, overlap=0):
     """ Calculate the pagenumber for the navigation """
     # To find first element in a page,
     # elementnumber = pagenumber * (size - overlap) - size (- orphan?)
-    try:
-        pagenumber, remainder = divmod(elementnumber, batchsize - overlap)
-    except ZeroDivisionError:
+    realsize = batchsize - overlap
+    if realsize != 0:
+        pagenumber, remainder = divmod(elementnumber, realsize)
+    else:
         pagenumber, remainder = divmod(elementnumber, 1)
     if remainder > overlap:
         pagenumber += 1
