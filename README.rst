@@ -16,7 +16,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-CHANGES.txt
+   CHANGES
+   plone/batching/batching
 
 .. automodule:: plone.batching.batch
     :members:

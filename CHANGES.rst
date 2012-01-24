@@ -1,11 +1,9 @@
 Changelog
 =========
 
-1.0a1 - 2009-04-04
-------------------
+1.0a1 - (svn/unreleased)
+------------------------
 
-- Repackaging as an egg.
-  [hannosch]
+- Factored out Plone batching implementation to seperate egg (PLIP #12235)
+  [tom_gross]
 
-- Initial implementation.
-  [tesdal]
