@@ -18,6 +18,7 @@ Contents:
 
    CHANGES
    plone/batching/batching
+   USAGE
 
 .. automodule:: plone.batching.batch
     :members:
