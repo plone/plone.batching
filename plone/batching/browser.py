@@ -16,8 +16,9 @@ class BatchView(BrowserView):
 
     template = BatchTemplate
 
-    def __call__(self, batch):
+    def __call__(self, batch, batchformkeys=None):
         self.batch = batch
+        self.batchformkeys = batchformkeys
         return self.template()
 
     def make_link(self, pagenumber):
@@ -26,12 +27,11 @@ class BatchView(BrowserView):
 
 class PloneBatchView(BatchView):
     def make_link(self, pagenumber=None):
-        # XXX implement batchformkeys
-        batchformkeys = None
         form = self.request.form
-        if batchformkeys:
+        if self.batchformkeys:
             batchlinkparams = dict([(key, form[key])
-                                    for key in batchformkeys if key in form])
+                                    for key in self.batchformkeys
+                                    if key in form])
         else:
             batchlinkparams = form.copy()
 
