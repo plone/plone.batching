@@ -15,6 +15,8 @@ class BatchView(BrowserView):
     """ View class for browser navigation  (classic) """
 
     template = BatchTemplate
+    batch = None
+    batchformkeys = None
 
     def __call__(self, batch, batchformkeys=None):
         self.batch = batch
