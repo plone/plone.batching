@@ -7,11 +7,12 @@
 
 <tal:macro
      metal:define-macro="navigation"
-     tal:define="batch batch|nothing">
+     tal:define="batch batch|nothing;
+                 batchformkeys batchformkeys|nothing;">
 
     <tal:batchnavigation
             define="batchnavigation nocall:context/@@batchnavigation"
-            replace="structure python:batchnavigation(batch)" />
+            replace="structure python:batchnavigation(batch, batchformkeys)" />
 
 </tal:macro>
 

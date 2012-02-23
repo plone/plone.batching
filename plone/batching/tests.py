@@ -3,6 +3,7 @@ import unittest
 import doctest
 
 from plone.batching.batch import BaseBatch, QuantumBatch
+from plone.batching.browser import BatchMacrosView, BatchView, PloneBatchView
 from plone.batching.utils import (
     calculate_pagenumber, calculate_pagerange, opt, calculate_quantum_leap_gap,
     calculate_leapback, calculate_leapforward)
@@ -105,12 +106,46 @@ class TestQuantumBatch(unittest.TestCase):
         self.assertEqual(qbatch.leapforward, [54])
 
 
+class DummyTemplate(object):
+    macros = 'here are PT macros normally'
+    
+    def __call__(self):
+        return "Template called!"
+
+class TestBrowser(unittest.TestCase):
+
+    def test_batchmacrosview(self):
+        view = BatchMacrosView(None, None)
+        setattr(view, 'template', DummyTemplate())   # fake view creation        
+        self.assertEqual(view.macros, 'here are PT macros normally')
+        
+    def test_batchview_base(self):
+        view = BatchView(None, None)
+        setattr(view, 'template', DummyTemplate())   # fake view creation 
+        self.assertRaises(NotImplementedError, view.make_link, 0)
+        rendered = view([1, 2, 3], ['a', 'b'])
+        self.assertEqual(rendered, "Template called!")
+        self.assertEqual(view.batch, [1, 2, 3])
+        self.assertEqual(view.batchformkeys, ['a', 'b'])
+        
+    def test_batchview_plone(self):
+        from zope.publisher.browser import TestRequest
+        batch = BaseBatch([1, 2, 3, 4, 5, 6, 7], 3)
+        request = TestRequest(form={'a': 'foo', 'c': 'bar'})
+        setattr(request, 'ACTUAL_URL', 'http://nohost/dummy')
+        view = PloneBatchView(None, request)
+        rendered = view(batch, ['a', 'b'])
+        
+        self.assertEqual(view.make_link(3),
+                         'http://nohost/dummy?a=foo&b_start:int=6')
+
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTests([
         unittest.makeSuite(TestUtilsOpt),
         unittest.makeSuite(TestUtils),
         unittest.makeSuite(TestBatch),
+        unittest.makeSuite(TestBrowser),
         unittest.makeSuite(TestQuantumBatch),
         doctest.DocFileSuite('batching.txt',
             package='plone.batching',
