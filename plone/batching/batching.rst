@@ -18,8 +18,8 @@ Items on page
 
 The batch is iterable. It will only return the items for the current page.
 
- # >>> list(batch)
- # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ >>> list(batch)
+ [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 If we change to a different page it will change the result set to that page.
 

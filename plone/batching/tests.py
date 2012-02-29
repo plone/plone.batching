@@ -147,7 +147,7 @@ def test_suite():
         unittest.makeSuite(TestBatch),
         unittest.makeSuite(TestBrowser),
         unittest.makeSuite(TestQuantumBatch),
-        doctest.DocFileSuite('batching.txt',
+        doctest.DocFileSuite('batching.rst',
             package='plone.batching',
             optionflags=doctest.ELLIPSIS | doctest.REPORT_ONLY_FIRST_FAILURE,
             setUp=setUp, tearDown=tearDown),

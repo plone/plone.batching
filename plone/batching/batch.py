@@ -248,7 +248,6 @@ class QuantumBatch(BaseBatch):
         """
         quantumleap - 0 or 1 to indicate if bigger increments should be used
                       in the navigation list for big results.
-        b_start_str - the request variable used for start, default 'b_start'
         """
         self.quantumleap = quantumleap
         super(QuantumBatch, self).__init__(sequence, size, start, end, orphan,
