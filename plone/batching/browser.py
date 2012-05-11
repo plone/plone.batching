@@ -3,7 +3,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ZTUtils import  make_query
 
 BatchTemplate = ViewPageTemplateFile("batchnavigation.pt")
-
+BootstrapBatchTemplate = ViewPageTemplateFile("batchnavigation_bootstrap.pt")
 
 class BatchMacrosView(BrowserView):
     @property
@@ -17,14 +17,20 @@ class BatchView(BrowserView):
     template = BatchTemplate
     batch = None
     batchformkeys = None
+    minimal_navigation = False
 
-    def __call__(self, batch, batchformkeys=None):
+    def __call__(self, batch, batchformkeys=None, minimal_navigation=False):
         self.batch = batch
         self.batchformkeys = batchformkeys
+        self.minimal_navigation = minimal_navigation
         return self.template()
 
     def make_link(self, pagenumber):
         raise NotImplementedError
+
+
+class BootstrapBatchView(BatchView):
+    template = BootstrapBatchTemplate
 
 
 class PloneBatchView(BatchView):
@@ -40,3 +46,7 @@ class PloneBatchView(BatchView):
         start = max(pagenumber - 1, 0) * self.batch.pagesize
         return '%s?%s' % (self.request.ACTUAL_URL, make_query(batchlinkparams,
                          {self.batch.b_start_str: start}))
+
+
+class PloneBootstrapBatchView(BootstrapBatchView, PloneBatchView):
+    pass
