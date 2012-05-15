@@ -5,9 +5,9 @@
                    >
 <div class="listingBar"
      i18n:domain="plone"
-     tal:condition="batch/multiple_pages">
+     tal:condition="batch/multiple_pages|nothing">
     <span class="previous"
-      tal:condition="batch/has_previous">
+      tal:condition="batch/has_previous|nothing">
         <a href=""
            tal:attributes="href python:view.make_link(batch.previouspage)">
            &laquo;
