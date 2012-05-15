@@ -10,7 +10,7 @@ Both elements can be defined and accessed in Python code AND pagetemplates.
 Batch navigation in templates
 -----------------------------
 
-For the use of batching features in Page Templates *plone.batching* 
+For the use of batching features in Page Templates *plone.batching*
 the first thing you have to do is to create a sequence batch and put
 it in a template variable named *batch*.
 You should do this in a view class if possible ::
@@ -29,7 +29,7 @@ For the navigation you add the following snippet to your template ::
      define="batchnavigation nocall:context/@@batchnavigation"
      replace="structure python:batchnavigation(batch)" />
 
-For backwards compatibility *plone.batching* provides a drop in metal macro 
+For backwards compatibility *plone.batching* provides a drop in metal macro
 *navigation* in the *batch_macros* template. Add it to the template like this::
 
  <div metal:use-macro="context/batch_macros/macros/navigation" />
@@ -45,13 +45,13 @@ A batch is instantiated like this: ::
 
 This generates 5 subbatches with 15 items from the sequence [0, 1, ..., 99]
 and one subbatch with the last 25 items (including 10 orphaned items).
-For a detailed description of available parameters for a batch 
+For a detailed description of available parameters for a batch
 look at the API of the BaseBatch class.
- 
+
 Another way to instaniate a batch is like this: ::
 
   >>> batch = Batch.fromPagenumber(range(100), pagesize=15, pagenumber=1)
-  
+
 This results in 6 batches with 15 items and one batch with the last 10 items.
 This way of creating a batch is meant as a short cut and does not support
 all the options the canonical constructor supports.
@@ -94,7 +94,7 @@ the first argument. ::
   >>> class MyContentView(BrowserView):
   ...     def batch(self):
   ...         " "  # see above how a batch is defined
-  ...     
+  ...
   ...     def batching(self):
   ...         return MyBatchView(self.context, self.request)(self.batch)
 
