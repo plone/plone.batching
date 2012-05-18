@@ -19,7 +19,7 @@ You should do this in a view class if possible ::
 
 or you can do it in the template itself if necessary  ::
 
-  <div tal:define="Batch python:modules['Products.CMFPlone'].Batch;
+  <div tal:define="Batch python:modules['plone.batching'].Batch;
                    b_size python:30;b_start python:0;b_start request/b_start | b_start;
                    batch python:Batch(results, b_size, int(b_start), orphan=1);">
 
