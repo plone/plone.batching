@@ -3,7 +3,7 @@ Batching
 ========
 
 Batching is the mechanism with which you split up a large dataset over multiple
-pages. The bacthing implementation discussed here has many features to help
+pages. The batching implementation discussed here has many features to help
 with constructing templates.
 
 A basic batch is created using a few paramenters.
@@ -51,7 +51,7 @@ We can get the number of pages in a batch. This is actually the same as requesti
   34
 
 If we switch to this page the `items_on_page` attribute should be different
-(because our items are indiviseable by ten).
+(because our items are indivisible by ten).
 
   >>> batch.pagenumber = batch.lastpage
   >>> batch.items_on_page
@@ -63,7 +63,7 @@ Navigation
 Because the batch implementation is geared towards templates it also provides a
 few navigation related methods.
 
-The first we can check is wheter our batch is spannend over multiple pages.
+The first thing we can check is whether our batch spans over multiple pages.
 
   >>> batch = Batch.fromPagenumber(
   ...          items=range(333), pagesize=10, navlistsize=5)
@@ -84,7 +84,7 @@ It will also do simple math for giving the next and previous page numbers.
   >>> batch.previouspage
   4
   
-We can also make sure beforehand to see if there are any next or previous pages.
+We can also ask if there are any next or previous pages.
 
   >>> batch.has_next
   True
@@ -101,7 +101,7 @@ We can also make sure beforehand to see if there are any next or previous pages.
   False
 
 You might want to display the next item count. This can be usefull in case the
-batch is not exactly divisable by the pagesize.
+batch is not exactly divisible by the pagesize.
 
   >>> batch.pagenumber = batch.lastpage - 1
   >>> batch.next_item_count
