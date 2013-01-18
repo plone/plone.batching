@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.0a2.dev0'
+version = '1.0b1'
 
 setup(
     name='plone.batching',
