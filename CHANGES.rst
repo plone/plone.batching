@@ -4,7 +4,8 @@ Changelog
 1.0 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fixed wrong msgid for 'First item'.
+  [vincentfretin]
 
 
 1.0b1 (2013-01-17)

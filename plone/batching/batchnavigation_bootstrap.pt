@@ -16,7 +16,7 @@
       <a href="" tal:attributes="href python:view.make_link(1)">
         <span tal:condition="view/minimal_navigation" tal:omit-tag="">&laquo;</span>
         <span tal:condition="not:view/minimal_navigation" tal:omit-tag=""
-          i18n:translate="batch_last_item">First item</span>
+          i18n:translate="batch_first_item">First item</span>
       </a>
     </li>
 
