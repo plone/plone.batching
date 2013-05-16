@@ -15,11 +15,11 @@
         />
 
     <browser:page
-            name="batchnavigation"
-            for="*"
-            permission="zope.Public"
-            class=".browser.PloneBatchView"
-            template="batchnavigation.pt"
-            />
+        name="batchnavigation"
+        for="*"
+        permission="zope.Public"
+        class=".browser.PloneBatchView"
+        template="batchnavigation.pt"
+        />
 
 </configure>
