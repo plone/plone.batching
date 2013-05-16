@@ -2,7 +2,6 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ZTUtils import  make_query
 
-BatchTemplate = ViewPageTemplateFile("batchnavigation.pt")
 BootstrapBatchTemplate = ViewPageTemplateFile("batchnavigation_bootstrap.pt")
 
 class BatchMacrosView(BrowserView):
@@ -14,7 +13,6 @@ class BatchMacrosView(BrowserView):
 class BatchView(BrowserView):
     """ View class for browser navigation  (classic) """
 
-    template = BatchTemplate
     batch = None
     batchformkeys = None
     minimal_navigation = False
@@ -23,14 +21,14 @@ class BatchView(BrowserView):
         self.batch = batch
         self.batchformkeys = batchformkeys
         self.minimal_navigation = minimal_navigation
-        return self.template()
+        return self.index()
 
     def make_link(self, pagenumber):
         raise NotImplementedError
 
 
 class BootstrapBatchView(BatchView):
-    template = BootstrapBatchTemplate
+    index = BootstrapBatchTemplate
 
 
 class PloneBatchView(BatchView):
