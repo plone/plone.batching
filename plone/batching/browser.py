@@ -2,6 +2,7 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ZTUtils import  make_query
 
+BatchTemplate = ViewPageTemplateFile("batchnavigation.pt")
 BootstrapBatchTemplate = ViewPageTemplateFile("batchnavigation_bootstrap.pt")
 
 class BatchMacrosView(BrowserView):
@@ -13,6 +14,7 @@ class BatchMacrosView(BrowserView):
 class BatchView(BrowserView):
     """ View class for browser navigation  (classic) """
 
+    index = BatchTemplate
     batch = None
     batchformkeys = None
     minimal_navigation = False
