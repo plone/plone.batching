@@ -112,6 +112,7 @@ class DummyTemplate(object):
     def __call__(self):
         return "Template called!"
 
+
 class TestBrowser(unittest.TestCase):
 
     def test_batchmacrosview(self):
@@ -120,8 +121,9 @@ class TestBrowser(unittest.TestCase):
         self.assertEqual(view.macros, 'here are PT macros normally')
         
     def test_batchview_base(self):
-        view = BatchView(None, None)
-        setattr(view, 'template', DummyTemplate())   # fake view creation 
+        from zope.publisher.browser import TestRequest
+        view = BatchView(None, TestRequest())
+        setattr(view, 'index', DummyTemplate())   # fake view creation 
         self.assertRaises(NotImplementedError, view.make_link, 0)
         rendered = view([1, 2, 3], ['a', 'b'])
         self.assertEqual(rendered, "Template called!")

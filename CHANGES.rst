@@ -6,7 +6,7 @@ Changelog
 
 - Use index instead of template attribute in BatchView to be able to customize
   only the template.
-  [vincentfretin]
+  [vincentfretin, thomasdesvenain]
 
 - Fixed wrong msgid for 'First item'.
   [vincentfretin]
