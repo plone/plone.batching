@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0 (unreleased)
+1.0 (2013-05-23)
 ----------------
 
 - Use index instead of template attribute in BatchView to be able to customize
