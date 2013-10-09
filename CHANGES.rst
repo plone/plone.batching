@@ -4,7 +4,9 @@ Changelog
 1.0.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix issue with sequences when the reported length was different
+  than len() iteration would return the full unbatched sequence.
+  [alecm]
 
 
 1.0 (2013-05-23)

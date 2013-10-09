@@ -70,6 +70,10 @@ class TestBatch(unittest.TestCase):
         self.assertTrue(isinstance(prev, BaseBatch))
         self.assertEqual(prev.start, 1)
 
+    def test_getitem_out_of_batch(self):
+        batch = BaseBatch(range(20), 5)
+        self.assertRaises(IndexError, batch.__getitem__, 6)
+
     def test_getitem_resultcount(self):
         class MySeq(list):
 
@@ -79,6 +83,8 @@ class TestBatch(unittest.TestCase):
 
         batch = BaseBatch(MySeq(range(20)), 5)
         self.assertEqual(batch[3], 3)
+        self.assertEqual(list(batch), [0, 1, 2, 3, 4])
+        self.assertRaises(IndexError, batch.__getitem__, 6)
 
     def test_getitem_negative(self):
         batch = BaseBatch(range(20), 5)

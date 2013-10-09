@@ -123,7 +123,8 @@ class BaseBatch(object):
         """ Get item from batch
         """
         actual = getattr(self._sequence, 'actual_result_count', None)
-        if actual is not None and actual != len(self._sequence):
+        if (actual is not None and actual != len(self._sequence)
+            and index < self.length):
             # optmized batch that contains only the wanted items in the
             # sequence
             return self._sequence[index]
