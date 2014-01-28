@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.1 (unreleased)
+1.0.1 (2014-01-27)
 ------------------
 
 - Fix issue with sequences when the reported length was different
