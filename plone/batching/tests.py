@@ -127,7 +127,6 @@ class TestQuantumBatch(unittest.TestCase):
         self.assertEqual(qbatch.leapforward, [54])
 
 
-
 class DummyTemplate(object):
     macros = 'here are PT macros normally'
     
