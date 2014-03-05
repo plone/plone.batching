@@ -118,6 +118,10 @@ class TestBatch(unittest.TestCase):
         batch = BaseBatch(sequence, 10, start=280)
         self.assertEqual(batch.length, 0)
 
+        # Single item batch
+        batch = BaseBatch(sequence[0:1], 10)
+        self.assertEqual(batch.length, 1)
+
 
 class TestQuantumBatch(unittest.TestCase):
 
