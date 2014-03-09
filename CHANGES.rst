@@ -4,9 +4,7 @@ Changelog
 1.0.2 (unreleased)
 ------------------
 
-- Fix issue where a start >= end will always return last item.
-  https://dev.plone.org/ticket/13880\
-  [thepjot]
+- Nothing changed yet.
 
 
 1.0.1 (2014-01-27)

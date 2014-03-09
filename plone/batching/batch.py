@@ -51,8 +51,6 @@ class BaseBatch(object):
         self.end = end
 
         self.first = max(start - 1, 0)
-        if self.start == self.end and self.sequence_length > 1:
-            self.first = self.end
         self.length = self.end - self.first
 
         self.last = self.sequence_length - size
