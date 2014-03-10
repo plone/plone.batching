@@ -37,7 +37,10 @@ class BaseBatch(object):
         self.orphan = orphan
         self.overlap = overlap
         self.pagerange = pagerange
-
+        self.beyond = False
+        # Special use case, where the start is bigger than the sequence
+        if start > len(sequence):
+            self.beyond = True
         self.initialize(start, end, size)
 
     def initialize(self, start, end, size):
@@ -51,7 +54,7 @@ class BaseBatch(object):
         self.end = end
 
         self.first = max(start - 1, 0)
-        if self.start == self.end and self.sequence_length > 1:
+        if self.beyond:
             self.first = self.end
         self.length = self.end - self.first
 

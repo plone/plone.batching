@@ -119,8 +119,19 @@ class TestBatch(unittest.TestCase):
         self.assertEqual(batch.length, 0)
 
         # Single item batch
-        batch = BaseBatch(sequence[0:1], 10)
+        batch = BaseBatch(range(1), 10)
         self.assertEqual(batch.length, 1)
+
+        # Small sequence batch (to cover plone.z3cform.crud)
+        small_sequence = range(3)
+        # Page 1
+        batch = BaseBatch.fromPagenumber(small_sequence, 2, 1)
+        self.assertEqual(batch.length, 2)        
+
+        # Page 2
+        batch = BaseBatch.fromPagenumber(small_sequence, 2, 2)
+        self.assertEqual(batch.length, 1)        
+
 
 
 class TestQuantumBatch(unittest.TestCase):
