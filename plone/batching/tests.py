@@ -132,6 +132,20 @@ class TestBatch(unittest.TestCase):
         batch = BaseBatch.fromPagenumber(small_sequence, 2, 2)
         self.assertEqual(batch.length, 1)        
 
+    def test_multiple_pages_smaller(self):
+        """sequence smaller than batchsize"""
+        batch = BaseBatch(range(12), 20)
+        self.assertEquals(batch.multiple_pages, False)
+
+    def test_multiple_pages_equals(self):
+        """sequence equals batchsize"""
+        batch = BaseBatch(range(12), 12)
+        self.assertEquals(batch.multiple_pages, False)
+
+    def test_multiple_pages_longer(self):
+        """sequence longer than batchsize"""
+        batch = BaseBatch(range(12), 10)
+        self.assertEquals(batch.multiple_pages, True)
 
 
 class TestQuantumBatch(unittest.TestCase):

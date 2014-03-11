@@ -175,7 +175,7 @@ class BaseBatch(object):
     def multiple_pages(self):
         """ `True`, if batch has more than one page.
         """
-        return bool(self.sequence_length / self.pagesize)
+        return self.sequence_length > self.pagesize
 
     @property
     def previouspage(self):

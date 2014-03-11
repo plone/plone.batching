@@ -8,6 +8,9 @@ Changelog
   https://dev.plone.org/ticket/13880\
   [thepjot]
 
+- Fix multiple_pages if the length of the sequence is exactly the
+  page length.
+  [gaudenz]
 
 1.0.1 (2014-01-27)
 ------------------
