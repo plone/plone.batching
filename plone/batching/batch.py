@@ -39,7 +39,7 @@ class BaseBatch(object):
         self.pagerange = pagerange
         self.beyond = False
         # Special use case, where the start is bigger than the sequence
-        if start > len(sequence):
+        if start > self.sequence_length:
             self.beyond = True
         self.initialize(start, end, size)
 
