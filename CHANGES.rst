@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.2 (unreleased)
+1.0.2 (2014-04-13)
 ------------------
 
 - Fix issue where a start >= end will always return last item.
