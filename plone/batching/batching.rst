@@ -42,7 +42,7 @@ The other is more convenient for use with template.
 
 It is also possible to ask for the items on the current page.
 
-  >>> batch.items_on_page 
+  >>> batch.items_on_page
   10
 
 We can get the number of pages in a batch. This is actually the same as requesting the number of the last page.
@@ -83,7 +83,7 @@ It will also do simple math for giving the next and previous page numbers.
   >>> batch.pagenumber = 5
   >>> batch.previouspage
   4
-  
+
 We can also ask if there are any next or previous pages.
 
   >>> batch.has_next
@@ -119,7 +119,7 @@ Keep in mind that the navlist centers around the current page when it can.
   >>> batch.pagenumber = 10
   >>> batch.navlist
   [8, 9, 10, 11, 12]
-  
+
 You can specify the navlist size to be any size you want.
 
   >>> other_batch = Batch.fromPagenumber(items=range(333), pagesize=10, pagenumber=10,
@@ -155,7 +155,7 @@ special helpers.
   False
 
 For extra visual smoothness you might also want to display an elipses next to
-your quicklink to the first page. 
+your quicklink to the first page.
 
   >>> batch.pagenumber = 15
   >>> batch.second_page_not_in_navlist
