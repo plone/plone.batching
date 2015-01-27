@@ -31,6 +31,8 @@ class BaseBatch(object):
         overlap   - the number of overlapping elements in each batch
         pagerange - the number of pages to display in the navigation
         """
+        assert orphan < size, "Having an orphan size, higher than batch size" \
+                              " is undefined"
         start += 1
         self._sequence = sequence
         self._size = size
@@ -155,7 +157,7 @@ class BaseBatch(object):
         """ Last page of batch
         """
         pages = self.sequence_length / self.pagesize
-        if self.sequence_length % self.pagesize:
+        if (self.sequence_length - self.orphan) % self.pagesize:
             pages += 1
         return pages
 
