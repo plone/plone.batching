@@ -4,8 +4,7 @@ Changelog
 1.0.3 (unreleased)
 ------------------
 
-- Fix issue with orphaning
-  [do3cc]
+- Nothing changed yet.
 
 
 1.0.2 (2014-04-13)
