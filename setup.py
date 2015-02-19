@@ -7,7 +7,9 @@ setup(
     version=version,
     description="Batching facilities used in Plone.",
     long_description=open("README.rst").read() + "\n" +
-                     open("CHANGES.rst").read(),
+                     open("CHANGES.rst").read() + "\n" +
+                     open("plone/batching/batching.rst").read() + "\n" +
+                     open("USAGE.rst").read(),
     classifiers=[
         'Framework :: Plone :: 4.3',
         'Framework :: Zope2',
