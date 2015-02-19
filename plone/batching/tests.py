@@ -97,6 +97,14 @@ class TestBatch(unittest.TestCase):
         lastbatch = BaseBatch(range(20), 5, start=batch.last)
         self.assertTrue(lastbatch.islastpage)
 
+    def test_lastpage_with_orphans(self):
+        batch = BaseBatch(range(11), 10, orphan=1)
+        self.assertEqual(1, batch.lastpage)
+        batch = BaseBatch(range(109), 10, orphan=9)
+        self.assertEqual(10, batch.lastpage)
+        self.assertRaises(AssertionError, BaseBatch, [], 10, orphan=20)
+
+
     def test_items_not_on_page(self):
         batch = BaseBatch(range(20), 5, start=5)
         self.assertEqual(batch.items_not_on_page,
