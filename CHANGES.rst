@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.3 (unreleased)
+1.0.3 (2015-02-20)
 ------------------
 
 - Fix issue with orphaning
