@@ -156,10 +156,7 @@ class BaseBatch(object):
     def lastpage(self):
         """ Last page of batch
         """
-        pages = self.sequence_length / self.pagesize
-        if (self.sequence_length - self.orphan) % self.pagesize:
-            pages += 1
-        return pages
+        return self.numpages
 
     @property
     def islastpage(self):
