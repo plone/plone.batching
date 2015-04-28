@@ -112,7 +112,6 @@ class TestBatch(unittest.TestCase):
             [0, 1, 2, 3, 4, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19])
         self.assertEqual(list(batch), [5, 6, 7, 8, 9])
 
-
     def test_batch_bsize(self):
         sequence = range(279)
         # Random page
@@ -200,6 +199,7 @@ class TestBrowser(unittest.TestCase):
         self.assertEqual(view.make_link(3),
                          'http://nohost/dummy?a=foo&b_start:int=6')
 
+
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTests([
@@ -209,8 +209,9 @@ def test_suite():
         unittest.makeSuite(TestBrowser),
         unittest.makeSuite(TestQuantumBatch),
         doctest.DocFileSuite('batching.rst',
-            package='plone.batching',
-            optionflags=doctest.ELLIPSIS | doctest.REPORT_ONLY_FIRST_FAILURE,
-            setUp=setUp, tearDown=tearDown),
-        ])
+                             package='plone.batching',
+                             optionflags=doctest.ELLIPSIS |
+                             doctest.REPORT_ONLY_FIRST_FAILURE,
+                             setUp=setUp, tearDown=tearDown),
+    ])
     return suite
