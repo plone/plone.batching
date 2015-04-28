@@ -4,7 +4,8 @@ Changelog
 1.0.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix lastpage computation with orphaning
+  [gbastien]
 
 
 1.0.3 (2015-02-20)
@@ -54,4 +55,3 @@ Changelog
 
 - Factored out Plone batching implementation to seperate egg (PLIP #12235)
   [tom_gross]
-
