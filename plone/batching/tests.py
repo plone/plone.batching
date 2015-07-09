@@ -109,7 +109,8 @@ class TestBatch(unittest.TestCase):
     def test_items_not_on_page(self):
         batch = BaseBatch(range(20), 5, start=5)
         self.assertEqual(batch.items_not_on_page,
-            [0, 1, 2, 3, 4, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19])
+                         [0, 1, 2, 3, 4, 10, 11, 12,
+                          13, 14, 15, 16, 17, 18, 19])
         self.assertEqual(list(batch), [5, 6, 7, 8, 9])
 
     def test_batch_bsize(self):
