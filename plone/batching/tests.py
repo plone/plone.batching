@@ -159,13 +159,13 @@ class TestBatch(unittest.TestCase):
     def test_pagenumber_never_over_numpages(self):
         """computed _pagenumber is never > numpages, this
            makes previous_pages not fail."""
-        batch = BaseBatch([1, 2, 3, 4, 5, 6, 7], 3, 8)
+        batch = BaseBatch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 9)
+        self.assertEquals(batch.previous_pages, [1, 2, 3])
+        self.assertEquals(batch._pagenumber, 4)
+        # works especially with orphan
+        batch = BaseBatch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 9, orphan=2)
         self.assertEquals(batch.previous_pages, [1, 2])
         self.assertEquals(batch._pagenumber, 3)
-        # works especially with orphan
-        batch = BaseBatch([1, 2, 3, 4, 5, 6, 7], 3, 8, orphan=2)
-        self.assertEquals(batch.previous_pages, [1])
-        self.assertEquals(batch._pagenumber, 2)
 
 
 class TestQuantumBatch(unittest.TestCase):
