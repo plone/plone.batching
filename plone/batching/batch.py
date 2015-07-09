@@ -56,19 +56,22 @@ class BaseBatch(object):
         self.end = end
 
         self.first = max(start - 1, 0)
-        if self.beyond:
-            self.first = self.end
-        self.length = self.end - self.first
-
         self.last = self.sequence_length - size
 
         # Set up the total number of pages
         self.numpages = calculate_pagenumber(
             self.sequence_length - self.orphan, self.pagesize, self.overlap)
 
-        # Set up the current page number
-        self._pagenumber = calculate_pagenumber(
-            self.start, self.pagesize, self.overlap)
+        if self.beyond:
+            self.first = self.end
+            # Make sure current page number is not > numpages
+            self._pagenumber = self.numpages
+        else:
+            # Set up the current page number
+            self._pagenumber = calculate_pagenumber(
+                self.start, self.pagesize, self.overlap)
+
+        self.length = self.end - self.first
 
     @property
     def navlist(self):
