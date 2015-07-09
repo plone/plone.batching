@@ -194,8 +194,7 @@ class TestBrowser(unittest.TestCase):
         request = TestRequest(form={'a': 'foo', 'c': 'bar'})
         setattr(request, 'ACTUAL_URL', 'http://nohost/dummy')
         view = PloneBatchView(None, request)
-        rendered = view(batch, ['a', 'b'])
-
+        view(batch, ['a', 'b'])
         self.assertEqual(view.make_link(3),
                          'http://nohost/dummy?a=foo&b_start:int=6')
 
