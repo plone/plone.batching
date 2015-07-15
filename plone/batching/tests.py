@@ -109,7 +109,8 @@ class TestBatch(unittest.TestCase):
     def test_items_not_on_page(self):
         batch = BaseBatch(range(20), 5, start=5)
         self.assertEqual(batch.items_not_on_page,
-            [0, 1, 2, 3, 4, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19])
+                         [0, 1, 2, 3, 4, 10, 11, 12,
+                          13, 14, 15, 16, 17, 18, 19])
         self.assertEqual(list(batch), [5, 6, 7, 8, 9])
 
     def test_batch_bsize(self):
@@ -155,6 +156,17 @@ class TestBatch(unittest.TestCase):
         batch = BaseBatch(range(12), 10)
         self.assertEquals(batch.multiple_pages, True)
 
+    def test_pagenumber_never_over_numpages(self):
+        """computed _pagenumber is never > numpages, this
+           makes previous_pages not fail."""
+        batch = BaseBatch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 9)
+        self.assertEquals(batch.previous_pages, [1, 2, 3])
+        self.assertEquals(batch._pagenumber, 4)
+        # works especially with orphan
+        batch = BaseBatch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 9, orphan=2)
+        self.assertEquals(batch.previous_pages, [1, 2])
+        self.assertEquals(batch._pagenumber, 3)
+
 
 class TestQuantumBatch(unittest.TestCase):
 
@@ -194,8 +206,7 @@ class TestBrowser(unittest.TestCase):
         request = TestRequest(form={'a': 'foo', 'c': 'bar'})
         setattr(request, 'ACTUAL_URL', 'http://nohost/dummy')
         view = PloneBatchView(None, request)
-        rendered = view(batch, ['a', 'b'])
-
+        view(batch, ['a', 'b'])
         self.assertEqual(view.make_link(3),
                          'http://nohost/dummy?a=foo&b_start:int=6')
 

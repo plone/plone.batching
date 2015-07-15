@@ -4,7 +4,9 @@ Changelog
 1.0.5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Make sure pagenumber value is not bigger that numpages
+  or it fails in previous_pages when using orphan
+  [gbastien]
 
 
 1.0.4 (2015-04-28)

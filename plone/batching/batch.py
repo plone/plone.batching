@@ -70,6 +70,10 @@ class BaseBatch(object):
         self._pagenumber = calculate_pagenumber(
             self.start, self.pagesize, self.overlap)
 
+        # Make sure self._pagenumber is <= self.numpages
+        if self._pagenumber > self.numpages:
+            self._pagenumber = self.numpages
+
     @property
     def navlist(self):
         """ Pagenumber list for creating batch links """
