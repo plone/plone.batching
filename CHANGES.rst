@@ -8,6 +8,10 @@ Changelog
   or it fails in previous_pages when using orphan
   [gbastien]
 
+- Allow orphan size to be equal to batch size. This allows
+  the edge case of batch size 0 with default orphan size 0.
+  [do3cc]
+
 
 1.0.4 (2015-04-28)
 ------------------

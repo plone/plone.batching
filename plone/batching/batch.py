@@ -31,8 +31,8 @@ class BaseBatch(object):
         overlap   - the number of overlapping elements in each batch
         pagerange - the number of pages to display in the navigation
         """
-        assert orphan < size, "Having an orphan size, higher than batch size" \
-                              " is undefined"
+        assert orphan <= size, "Having an orphan size higher than batch size" \
+                               " is undefined"
         start += 1
         self._sequence = sequence
         self._size = size
