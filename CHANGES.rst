@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.5 (unreleased)
+1.0.5 (2015-07-18)
 ------------------
 
 - Make sure pagenumber value is not bigger that numpages
