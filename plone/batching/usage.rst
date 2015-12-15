@@ -1,3 +1,6 @@
+Usage
+=====
+
 A batch defined in plone.batching usually consists of two things:
 
  1. A batch object.
