@@ -12,7 +12,7 @@ setup(
         open("README.rst").read(),
         open("CHANGES.rst").read(),
         open("plone/batching/batching.rst").read(),
-        open("USAGE.rst").read(),
+        open("plone/batching/usage.rst").read(),
     ]),
     classifiers=[
         'Framework :: Plone :: 4.3',

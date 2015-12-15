@@ -233,7 +233,7 @@ def test_suite():
                              optionflags=doctest.ELLIPSIS |
                              doctest.REPORT_ONLY_FIRST_FAILURE,
                              setUp=setUp, tearDown=tearDown),
-        doctest.DocFileSuite('../../USAGE.rst',
+        doctest.DocFileSuite('usage.rst',
                              package='plone.batching',
                              optionflags=doctest.ELLIPSIS |
                              doctest.REPORT_ONLY_FIRST_FAILURE,
