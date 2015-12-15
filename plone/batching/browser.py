@@ -48,7 +48,7 @@ class PloneBatchView(BatchView):
             batchlinkparams = form.copy()
 
         start = max(pagenumber - 1, 0) * self.batch.pagesize
-        return "{0}{1}".format(
+        return "{0}?{1}".format(
             self.request.ACTUAL_URL,
             make_query(
                 batchlinkparams,
