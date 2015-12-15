@@ -89,6 +89,7 @@ One thing you have to keep in mind is to call the batch view with a batch as the
 
 ::
 
+  >>> from Products.Five import BrowserView
   >>> class MyContentView(BrowserView):
   ...     def batch(self):
   ...         " "  # see above how a batch is defined
