@@ -1,12 +1,19 @@
-from zope.component.testing import setUp, tearDown
-import unittest
+# -*- coding: utf-8 -*-
+from plone.batching.batch import BaseBatch
+from plone.batching.batch import QuantumBatch
+from plone.batching.browser import BatchMacrosView
+from plone.batching.browser import BatchView
+from plone.batching.browser import PloneBatchView
+from plone.batching.utils import calculate_leapback
+from plone.batching.utils import calculate_leapforward
+from plone.batching.utils import calculate_pagenumber
+from plone.batching.utils import calculate_pagerange
+from plone.batching.utils import calculate_quantum_leap_gap
+from plone.batching.utils import opt
+from zope.component.testing import setUp
+from zope.component.testing import tearDown
 import doctest
-
-from plone.batching.batch import BaseBatch, QuantumBatch
-from plone.batching.browser import BatchMacrosView, BatchView, PloneBatchView
-from plone.batching.utils import (
-    calculate_pagenumber, calculate_pagerange, opt, calculate_quantum_leap_gap,
-    calculate_leapback, calculate_leapforward)
+import unittest
 
 
 class TestUtilsOpt(unittest.TestCase):

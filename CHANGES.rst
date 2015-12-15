@@ -10,7 +10,8 @@ New:
 
 Fixes:
 
-- *add item here*
+- PEP 8, UTF 8 headers.
+  [thet]
 
 
 1.0.5 (2015-07-18)
