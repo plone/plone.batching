@@ -10,7 +10,7 @@ New:
 
 Fixes:
 
-- PEP 8, UTF 8 headers.
+- PEP 8, UTF 8 headers, docs cleanup.
   [thet]
 
 

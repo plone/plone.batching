@@ -11,8 +11,7 @@ setup(
     long_description=u'\n'.join([
         open("README.rst").read(),
         open("CHANGES.rst").read(),
-        open("plone/batching/batching.rst").read(),
-        open("plone/batching/usage.rst").read(),
+        open("docs/usage.rst").read(),
     ]),
     classifiers=[
         'Framework :: Plone :: 4.3',
