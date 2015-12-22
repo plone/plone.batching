@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 def opt(start, end, size, orphan, sequence_length):
     """ Calculate start, end, batchsize
     """
@@ -62,8 +63,11 @@ def calculate_leapback(pagenumber, numpages, pagerange):
     if num_back_leaps:
         pagerange, pagerangestart, pagerangeend = calculate_pagerange(
             pagenumber, numpages, pagerange)
-        leapback = range(pagerangestart - num_back_leaps * quantum_leap_gap,
-            pagerangestart, quantum_leap_gap)
+        leapback = range(
+            pagerangestart - num_back_leaps * quantum_leap_gap,
+            pagerangestart,
+            quantum_leap_gap
+        )
     return leapback
 
 
@@ -77,7 +81,9 @@ def calculate_leapforward(pagenumber, numpages, pagerange):
     if num_forward_leaps:
         pagerange, pagerangestart, pagerangeend = calculate_pagerange(
             pagenumber, numpages, pagerange)
-        leapforward = range(pagerangeend - 1 + quantum_leap_gap,
+        leapforward = range(
+            pagerangeend - 1 + quantum_leap_gap,
             pagerangeend - 1 + (num_forward_leaps + 1) * quantum_leap_gap,
-            quantum_leap_gap)
+            quantum_leap_gap
+        )
     return leapforward

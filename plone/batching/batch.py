@@ -1,8 +1,10 @@
-from zope.interface import implements
-
+# -*- coding: utf-8 -*-
 from plone.batching.interfaces import IBatch
-from plone.batching.utils import (
-    opt, calculate_leapback, calculate_leapforward, calculate_pagenumber)
+from plone.batching.utils import calculate_leapback
+from plone.batching.utils import calculate_leapforward
+from plone.batching.utils import calculate_pagenumber
+from plone.batching.utils import opt
+from zope.interface import implements
 
 
 class BaseBatch(object):
@@ -117,8 +119,14 @@ class BaseBatch(object):
         """
         if self.end >= (self.last + self.pagesize):
             return None
-        return Batch(self._sequence, self._size, self.end - self.overlap,
-            0, self.orphan, self.overlap)
+        return Batch(
+            self._sequence,
+            self._size,
+            self.end - self.overlap,
+            0,
+            self.orphan,
+            self.overlap
+        )
 
     @property
     def previous(self):
@@ -126,16 +134,21 @@ class BaseBatch(object):
         """
         if not self.first:
             return None
-        return Batch(self._sequence, self._size,
-            self.first - self._size + self.overlap, 0, self.orphan,
-            self.overlap)
+        return Batch(
+            self._sequence,
+            self._size,
+            self.first - self._size + self.overlap,
+            0,
+            self.orphan,
+            self.overlap
+        )
 
     def __getitem__(self, index):
         """ Get item from batch
         """
         actual = getattr(self._sequence, 'actual_result_count', None)
         if (actual is not None and actual != len(self._sequence)
-            and index < self.length):
+                and index < self.length):
             # optmized batch that contains only the wanted items in the
             # sequence
             return self._sequence[index]
