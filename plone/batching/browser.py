@@ -38,23 +38,25 @@ class BootstrapBatchView(BatchView):
 
 class PloneBatchView(BatchView):
 
-    def make_link(self, pagenumber=None):
-        form = self.request.form
+    def make_link(self, pagenumber=None, omit_params=['ajax_load']):
+        query_params = {}
+        query_params.update(self.request.form)
         if self.batchformkeys:
-            batchlinkparams = dict([(key, form[key])
-                                    for key in self.batchformkeys
-                                    if key in form])
-        else:
-            batchlinkparams = form.copy()
+            for key in query_params.keys():
+                if key not in self.batchformkeys:
+                    del query_params[key]
+        if omit_params:
+            for key in omit_params:
+                if key in query_params:
+                    del query_params[key]
 
         start = max(pagenumber - 1, 0) * self.batch.pagesize
-        return "{0}?{1}".format(
+        query_params[self.batch.b_start_str] = start
+        url = u'{0}?{1}'.format(
             self.request.ACTUAL_URL,
-            make_query(
-                batchlinkparams,
-                {self.batch.b_start_str: start}
-            )
+            make_query(query_params)
         )
+        return url
 
 
 class PloneBootstrapBatchView(BootstrapBatchView, PloneBatchView):

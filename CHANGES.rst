@@ -6,7 +6,11 @@ Changelog
 
 New:
 
-- *add item here*
+- Introduce a "omit_params" option for the ``make_link`` method and filter out
+  ``ajax_load`` by default. When loading the contents with batchnavigation via
+  ajax, it doesn't render the links with ajax_load enabled, which would
+  probably lead to usability troubles.
+  [thet]
 
 Fixes:
 
