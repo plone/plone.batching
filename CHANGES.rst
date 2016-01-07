@@ -6,6 +6,15 @@ Changelog
 
 New:
 
+- For generating the batching urls, don't use ACTUAL_URL, but the context's
+  absolute_url. This allows for mutliple batchnavigations on different contexts
+  shown on one page via some collage or mosaic view.
+  ATTENTION: CAN'T BE DONE THAT WAY!
+  PROBLEM: On views, which are no defaultView but explicitly called (e.g.
+  ``@@folder_contents``), the links would be generated wrong. Couldn't
+  determine the actual shown view within one request cycle, so I gave up on
+  this. It's just a corne use case anyways...
+
 - Introduce a "omit_params" option for the ``make_link`` method and filter out
   ``ajax_load`` by default. When loading the contents with batchnavigation via
   ajax, it doesn't render the links with ajax_load enabled, which would
