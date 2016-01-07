@@ -10,10 +10,14 @@ from plone.batching.utils import calculate_pagenumber
 from plone.batching.utils import calculate_pagerange
 from plone.batching.utils import calculate_quantum_leap_gap
 from plone.batching.utils import opt
+from zope.component import adapter
 from zope.component.testing import setUp
 from zope.component.testing import tearDown
+from zope.interface import implementer
+from zope.interface import Interface
 import doctest
 import unittest
+
 
 
 class TestUtilsOpt(unittest.TestCase):
@@ -192,6 +196,43 @@ class DummyTemplate(object):
         return "Template called!"
 
 
+class DummyContext(object):
+    path = '/dummy'
+    __parent__ = None
+
+    def absolute_url(self):
+        return u"http://nohost{0}".format(self.path)
+
+    @property
+    def aq_parent(self):
+        return self.__parent__
+
+
+@implementer(Interface)
+@adapter(Interface, Interface)
+class DummyContextState(object):
+    """Dummy plone_context_state view.
+    Works with this content structure:
+
+    path                is_default_page
+    -----------------------------------
+    /dummy              False
+    /dummy/ob1          True
+    /dummy/ob2          False
+
+    """
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def is_default_page(self):
+        if 'ob1' in self.context.absolute_url():
+            return True
+        else:
+            return False
+
+
 class TestBrowser(unittest.TestCase):
 
     def test_batchmacrosview(self):
@@ -213,8 +254,7 @@ class TestBrowser(unittest.TestCase):
         from zope.publisher.browser import TestRequest
         batch = BaseBatch([1, 2, 3, 4, 5, 6, 7], 3)
         request = TestRequest(form={'a': 'foo', 'c': 'bar'})
-        setattr(request, 'ACTUAL_URL', 'http://nohost/dummy')
-        view = PloneBatchView(None, request)
+        view = PloneBatchView(DummyContext(), request)
         view(batch, ['a', 'b'])
         self.assertEqual(view.make_link(3),
                          'http://nohost/dummy?a=foo&b_start:int=6')
@@ -223,12 +263,45 @@ class TestBrowser(unittest.TestCase):
         from zope.publisher.browser import TestRequest
         batch = BaseBatch([1, 2, 3, 4, 5, 6, 7], 3)
         request = TestRequest(form={'a': 'foo', 'ajax_load': 1})
-        setattr(request, 'ACTUAL_URL', 'http://nohost/dummy')
-        view = PloneBatchView(None, request)
+        view = PloneBatchView(DummyContext(), request)
         view(batch)  # don't set allowed params (batchformkeys) like above.
         # allow all, but filter for ajax_load separately
         self.assertEqual(view.make_link(3),
                          'http://nohost/dummy?a=foo&b_start:int=6')
+
+    def test_batchview_plone_default_page(self):
+        from zope.publisher.browser import TestRequest
+        from zope.component import getGlobalSiteManager
+        gsm = getGlobalSiteManager()
+        gsm.registerAdapter(DummyContextState, name='plone_context_state')
+
+        ob_dummy = DummyContext()
+
+        ob1 = DummyContext()
+        ob1.path = '/dummy/ob1'
+        ob1.__parent__ = ob_dummy
+
+        ob2 = DummyContext()
+        ob2.path = '/dummy/ob2'
+        ob2.__parent__ = ob_dummy
+
+        batch = BaseBatch([1, 2, 3, 4, 5, 6, 7], 3)
+        request = TestRequest(form={'a': 'foo', 'c': 'bar'})
+
+        view = PloneBatchView(ob_dummy, request)
+        view(batch, ['a', 'b'])
+        self.assertEqual(view.make_link(3),
+                         'http://nohost/dummy?a=foo&b_start:int=6')
+
+        view = PloneBatchView(ob1, request)
+        view(batch, ['a', 'b'])
+        self.assertEqual(view.make_link(3),
+                         'http://nohost/dummy?a=foo&b_start:int=6')
+
+        view = PloneBatchView(ob2, request)
+        view(batch, ['a', 'b'])
+        self.assertEqual(view.make_link(3),
+                         'http://nohost/dummy/ob2?a=foo&b_start:int=6')
 
 
 def test_suite():
