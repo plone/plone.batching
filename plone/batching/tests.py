@@ -219,6 +219,17 @@ class TestBrowser(unittest.TestCase):
         self.assertEqual(view.make_link(3),
                          'http://nohost/dummy?a=foo&b_start:int=6')
 
+    def test_batchview_plone_ajax_load(self):
+        from zope.publisher.browser import TestRequest
+        batch = BaseBatch([1, 2, 3, 4, 5, 6, 7], 3)
+        request = TestRequest(form={'a': 'foo', 'ajax_load': 1})
+        setattr(request, 'ACTUAL_URL', 'http://nohost/dummy')
+        view = PloneBatchView(None, request)
+        view(batch)  # don't set allowed params (batchformkeys) like above.
+        # allow all, but filter for ajax_load separately
+        self.assertEqual(view.make_link(3),
+                         'http://nohost/dummy?a=foo&b_start:int=6')
+
 
 def test_suite():
     suite = unittest.TestSuite()
