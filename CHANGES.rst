@@ -6,7 +6,8 @@ Changelog
 
 New:
 
-- *add item here*
+- Make ellipses stylable and provide more CSS hooks to pagination markup. This also deprecates the CSS class ``listingBar`` in favor of more commonly used ``pagination``, which will be the canonical one in Plone 5.0.2 and up.
+  [davilima6]
 
 Fixes:
 
@@ -18,7 +19,8 @@ Fixes:
 
 Fixes:
 
-- Fixed missing test in released package.  [thet]
+- Fixed missing test in released package.
+  [thet]
 
 
 1.0.6 (2016-01-08)
