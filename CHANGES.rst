@@ -1,13 +1,19 @@
 Changelog
 =========
 
-1.1.1 (unreleased)
-------------------
+1.1 (unreleased)
+----------------
+
+.. warning:: Upgrade Warning!
+    If you customized the batchnavigation.pt file or use specific CSS styles for it, you might have to update them to reflect the new HTML structure.
 
 New:
 
 - Make ellipses stylable and provide more CSS hooks to pagination markup. This also deprecates the CSS class ``listingBar`` in favor of more commonly used ``pagination``, which will be the canonical one in Plone 5.0.2 and up.
   [davilima6]
+- Refactor batchnavigation HTML layout to use nav/ul/li elements instead of div/span.
+  [davilima6]
+
 - Switches deprecated ``listingBar`` CSS class to ``pagination``.
   [davilima6]
 
