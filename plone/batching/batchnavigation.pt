@@ -32,7 +32,7 @@
         <!-- Ellipsis after first item -->
       </tal:comment>
       <li class="disabled" tal:condition="batch/second_page_not_in_navlist">
-        ...
+        <span>...</span>
       </li>
 
       <tal:comment replace="nothing">
@@ -47,7 +47,7 @@
         <!-- Active page -->
       </tal:comment>
       <li class="active" tal:condition="batch/navlist">
-        [<span tal:content="batch/pagenumber" />]
+        <span tal:content="batch/pagenumber" />
       </li>
 
       <tal:comment replace="nothing">
@@ -61,9 +61,8 @@
       <tal:comment replace="nothing">
         <!-- Ellipsis before last item -->
       </tal:comment>
-      <li class="disabled"
-          tal:condition="batch/before_last_page_not_in_navlist">
-        ...
+      <li class="disabled" tal:condition="batch/before_last_page_not_in_navlist">
+        <span>...</span>
       </li>
 
       <tal:comment replace="nothing">
