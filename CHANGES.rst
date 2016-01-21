@@ -1,6 +1,28 @@
 Changelog
 =========
 
+1.1 (unreleased)
+----------------
+
+.. warning:: Upgrade Warning!
+    If you customized the batchnavigation.pt file or use specific CSS styles for it, you might have to update them to reflect the new HTML structure.
+
+New:
+
+- Refactor batchnavigation HTML layout to use nav/ul/li elements instead of div/span.
+  [davilima6]
+
+- Switches deprecated ``listingBar`` CSS class to ``pagination``.
+  [davilima6]
+
+- Make ellipses stylable and provide more CSS hooks to pagination markup.
+  [davilima6]
+
+Fixes:
+
+- *add item here*
+
+
 1.0.8 (unreleased)
 ------------------
 
