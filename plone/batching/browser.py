@@ -53,7 +53,7 @@ class PloneBatchView(BatchView):
         start = max(pagenumber - 1, 0) * self.batch.pagesize
         query_params[self.batch.b_start_str] = start
         url = u'{0}?{1}'.format(
-            self.request.ACTUAL_URL,
+            self.context.absolute_url(),
             make_query(query_params)
         )
         return url
