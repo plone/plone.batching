@@ -1,0 +1,10 @@
+<head tal:omit-tag="">
+    <link rel="prev"
+          tal:define="previouspage python:request.get('batch_previouspage')"
+          tal:attributes="href previouspage"
+          tal:condition="previouspage" />
+    <link rel="next"
+          tal:define="nextpage python:request.get('batch_nextpage')"
+          tal:attributes="href nextpage"
+          tal:condition="nextpage" />
+</head>

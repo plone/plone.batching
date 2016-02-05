@@ -22,4 +22,13 @@
       permission="zope.Public"
       />
 
+  <browser:viewlet
+      name="headpagination"
+      for="*"
+      manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+      class=".browser.HeadPaginationViewlet"
+      template="headpagination.pt"
+      permission="zope2.View"
+      />
+
 </configure>

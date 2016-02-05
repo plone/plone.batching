@@ -1,5 +1,7 @@
 <!-- Navigation -->
-<tal:batchnavigation define="batch view/batch|nothing"
+<tal:batchnavigation define="batch view/batch|nothing;
+                             dummy python:request.set('batch_previouspage', view.make_link(batch.previouspage));
+                             dummy python:request.set('batch_nextpage', view.make_link(batch.nextpage))"
     condition="batch"
     metal:define-macro="navigation">
 

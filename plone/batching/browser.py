@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from plone.app.layout.viewlets import common as base
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ZTUtils import make_query
@@ -60,4 +61,8 @@ class PloneBatchView(BatchView):
 
 
 class PloneBootstrapBatchView(BootstrapBatchView, PloneBatchView):
+    pass
+
+
+class HeadPaginationViewlet(base.ViewletBase):
     pass
