@@ -17,6 +17,7 @@ setup(
         'Framework :: Plone :: 4.3',
         'Framework :: Zope2',
         'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
     ],
     keywords='Plone',
     author='Plone Foundation',
