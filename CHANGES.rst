@@ -18,10 +18,6 @@ New:
 - Make ellipses stylable and provide more CSS hooks to pagination markup.
   [davilima6]
 
-Fixes:
-
-- *add item here*
-
 
 1.0.8 (unreleased)
 ------------------
