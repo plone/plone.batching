@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.1 (unreleased)
-----------------
+1.1.0 (2016-02-12)
+------------------
 
 .. warning:: Upgrade Warning!
     If you customized the batchnavigation.pt file or use specific CSS styles for it, you might have to update them to reflect the new HTML structure.
