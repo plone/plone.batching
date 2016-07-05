@@ -4,14 +4,13 @@ from plone.batching.utils import calculate_leapback
 from plone.batching.utils import calculate_leapforward
 from plone.batching.utils import calculate_pagenumber
 from plone.batching.utils import opt
-from zope.interface import implements
+from zope.interface import implementer
 
 
+@implementer(IBatch)
 class BaseBatch(object):
     """ A sequence batch splits up a large number of items over multiple pages
     """
-
-    implements(IBatch)
 
     size = first = start = end = 0
     navlist = []
