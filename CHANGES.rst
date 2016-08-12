@@ -4,10 +4,6 @@ Changelog
 1.1.1 (unreleased)
 ------------------
 
-New:
-
-- *add item here*
-
 Fixes:
 
 - Use zope.interface decorator.
@@ -39,10 +35,6 @@ New:
 
 - Make ellipses stylable and provide more CSS hooks to pagination markup. This also deprecates the CSS class ``listingBar`` in favor of more commonly used ``pagination``, which will be the canonical one in Plone 5.0.2 and up.
   [davilima6]
-
-Fixes:
-
-- *add item here*
 
 
 1.0.7 (2016-01-08)
