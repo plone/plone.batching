@@ -31,7 +31,8 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'setuptools'
+        'setuptools',
+        'Zope2',
     ],
     entry_points="""
     [z3c.autoinclude.plugin]
