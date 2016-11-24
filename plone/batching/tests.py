@@ -176,6 +176,21 @@ class TestBatch(unittest.TestCase):
         self.assertEquals(batch.previous_pages, [1, 2])
         self.assertEquals(batch._pagenumber, 3)
 
+    def test_slicing(self):
+        """slicing on a batch returns a smaller batch with same configuration
+        """
+        batch = BaseBatch(range(20), 5, 4)
+        new_batch = batch[4:]
+        self.assertEquals(new_batch[0], 8)
+        self.assertEquals(new_batch[-1], 12)
+        self.assertEquals(len(new_batch), 16)
+        self.assertEquals(new_batch._pagenumber, 1)
+        new_batch = batch[4:12]
+        self.assertEquals(new_batch[0], 8)
+        self.assertEquals(new_batch[-1], 11)
+        self.assertEquals(len(new_batch), 8)
+        self.assertEquals(new_batch._pagenumber, 1)
+
 
 class TestQuantumBatch(unittest.TestCase):
 

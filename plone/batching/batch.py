@@ -51,7 +51,6 @@ class BaseBatch(object):
         """
         start, end, sz = opt(start, end, size, self.orphan,
                              self.sequence_length)
-
         self.pagesize = sz
         self.start = start
         self.end = end
@@ -145,6 +144,16 @@ class BaseBatch(object):
     def __getitem__(self, index):
         """ Get item from batch
         """
+        if type(index)==slice:
+            new_sequence = self._sequence.__getslice__(
+                index.start or 0,
+                self.sequence_length if index.stop is None else index.stop
+            )
+            return BaseBatch(
+                new_sequence, self._size,
+                orphan=self.orphan, overlap=self.overlap,
+                pagerange=self.pagerange
+            )
         actual = getattr(self._sequence, 'actual_result_count', None)
         if (actual is not None and actual != len(self._sequence)
                 and index < self.length):

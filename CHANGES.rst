@@ -10,7 +10,8 @@ Breaking changes:
 
 New features:
 
-- *add item here*
+- Batch now support slicing. It returns a new batch with same configuration but on a subset of the original sequence.
+  [keul]
 
 Bug fixes:
 
