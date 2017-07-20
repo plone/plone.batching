@@ -4,17 +4,9 @@ Changelog
 1.1.2 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
-- *add item here*
+- Added missing Zope2 dependency.  [davisagli]
 
 
 1.1.1 (2016-08-12)
