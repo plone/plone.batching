@@ -12,6 +12,9 @@ New features:
 
 - *add item here*
 
+- Pagination: made label and arrows easier to customise.
+  [iham]
+
 Bug fixes:
 
 - *add item here*
