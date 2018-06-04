@@ -1,8 +1,10 @@
 Changelog
 =========
 
-1.1.3 (unreleased)
+1.1.3 (2018-06-04)
 ------------------
+
+New features:
 
 - Pagination: made label and arrows easier to customise.
   [iham]
