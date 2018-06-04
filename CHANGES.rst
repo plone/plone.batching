@@ -4,20 +4,8 @@ Changelog
 1.1.3 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 - Pagination: made label and arrows easier to customise.
   [iham]
-
-Bug fixes:
-
-- *add item here*
 
 
 1.1.2 (2017-07-20)
