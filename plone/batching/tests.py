@@ -59,10 +59,10 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(calculate_quantum_leap_gap(20, 2), 5)
 
     def test_calculate_leapback(self):
-        self.assertEqual(calculate_leapback(73, 100, 2), [28, 43, 58])
+        self.assertEqual(list(calculate_leapback(73, 100, 2)), [28, 43, 58])
 
     def test_calculate_leapforward(self):
-        self.assertEqual(calculate_leapforward(3, 100, 2), [18, 33, 48])
+        self.assertEqual(list(calculate_leapforward(3, 100, 2)), [18, 33, 48])
 
 
 class TestBatch(unittest.TestCase):
@@ -169,11 +169,11 @@ class TestBatch(unittest.TestCase):
         """computed _pagenumber is never > numpages, this
            makes previous_pages not fail."""
         batch = BaseBatch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 9)
-        self.assertEquals(batch.previous_pages, [1, 2, 3])
+        self.assertEquals(list(batch.previous_pages), [1, 2, 3])
         self.assertEquals(batch._pagenumber, 4)
         # works especially with orphan
         batch = BaseBatch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 9, orphan=2)
-        self.assertEquals(batch.previous_pages, [1, 2])
+        self.assertEquals(list(batch.previous_pages), [1, 2])
         self.assertEquals(batch._pagenumber, 3)
 
 
@@ -181,8 +181,8 @@ class TestQuantumBatch(unittest.TestCase):
 
     def test_quantumbatch(self):
         qbatch = QuantumBatch(range(200), 3, start=120, quantumleap=1)
-        self.assertEqual(qbatch.leapback, [18, 28])
-        self.assertEqual(qbatch.leapforward, [54])
+        self.assertEqual(list(qbatch.leapback), [18, 28])
+        self.assertEqual(list(qbatch.leapforward), [54])
 
 
 class DummyTemplate(object):
@@ -241,8 +241,7 @@ def test_suite():
         unittest.makeSuite(TestQuantumBatch),
         doctest.DocFileSuite('batching.rst',
                              package='plone.batching',
-                             optionflags=doctest.ELLIPSIS |
-                             doctest.REPORT_ONLY_FIRST_FAILURE,
+                             optionflags=doctest.ELLIPSIS,
                              setUp=setUp, tearDown=tearDown),
     ])
     return suite

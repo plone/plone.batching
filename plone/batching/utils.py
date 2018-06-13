@@ -43,15 +43,15 @@ def calculate_pagerange(pagenumber, numpages, pagerange):
     # Pagerange is the number of pages linked to in the navigation, odd number
     pagerange = max(0, pagerange + pagerange % 2 - 1)
     # Making sure the list will not start with negative values
-    pagerangestart = max(1, pagenumber - (pagerange - 1) / 2)
+    pagerangestart = max(1, round(pagenumber - (pagerange - 1) / 2))
     # Making sure the list does not expand beyond the last page
-    pagerangeend = min(pagenumber + (pagerange - 1) / 2, numpages) + 1
+    pagerangeend = min(round(pagenumber + (pagerange - 1) / 2), numpages) + 1
     return pagerange, pagerangestart, pagerangeend
 
 
 def calculate_quantum_leap_gap(numpages, pagerange):
     """ Find the QuantumLeap gap. Current width of list is 6 clicks (30/5) """
-    return int(max(1, round(float(numpages - pagerange) / 30)) * 5)
+    return round(max(1, round(float(numpages - pagerange) / 30.)) * 5)
 
 
 def calculate_leapback(pagenumber, numpages, pagerange):

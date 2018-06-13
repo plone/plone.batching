@@ -136,7 +136,7 @@ This is normally used to display numbers at the bottom of the screen for quick a
 ::
 
   >>> batch.pagenumber = 1
-  >>> batch.navlist
+  >>> list(batch.navlist)
   [1, 2, 3, 4, 5]
 
 Keep in mind that the navlist centers around the current page when it can.
@@ -144,7 +144,7 @@ Keep in mind that the navlist centers around the current page when it can.
 ::
 
   >>> batch.pagenumber = 10
-  >>> batch.navlist
+  >>> list(batch.navlist)
   [8, 9, 10, 11, 12]
 
 You can specify the navlist size to be any size you want.
@@ -153,7 +153,7 @@ You can specify the navlist size to be any size you want.
 
   >>> other_batch = Batch.fromPagenumber(items=range(333), pagesize=10, pagenumber=10,
   ...                     navlistsize=12)
-  >>> other_batch.navlist
+  >>> list(other_batch.navlist)
   [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
 We have already seen the `lastpage` property.
@@ -198,7 +198,7 @@ This should only be done in case the second page is not in the navigation list.
 ::
 
   >>> batch.pagenumber = 4
-  >>> batch.navlist
+  >>> list(batch.navlist)
   [2, 3, 4, 5, 6]
   >>> batch.second_page_not_in_navlist
   False
@@ -220,19 +220,19 @@ To make displaying the links to next and previous pages even easier you can also
 ::
 
   >>> batch.pagenumber = 1
-  >>> batch.next_pages
+  >>> list(batch.next_pages)
   [2, 3, 4, 5]
 
   >>> batch.pagenumber = batch.lastpage - 2
-  >>> batch.next_pages
+  >>> list(batch.next_pages)
   [33, 34]
 
 
   >>> batch.pagenumber = batch.lastpage
-  >>> batch.previous_pages
+  >>> list(batch.previous_pages)
   [32, 33]
 
   >>> batch.pagenumber = batch.firstpage + 1
-  >>> batch.previous_pages
+  >>> list(batch.previous_pages)
   [1]
 

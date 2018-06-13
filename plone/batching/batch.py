@@ -78,7 +78,7 @@ class BaseBatch(object):
     @property
     def navlist(self):
         """ Pagenumber list for creating batch links """
-        start = max(self.pagenumber - (self.pagerange / 2), 1)
+        start = max(self.pagenumber - round(self.pagerange / 2), 1)
         end = min(start + self.pagerange - 1, self.lastpage)
         return range(start, end + 1)
 
@@ -208,7 +208,8 @@ class BaseBatch(object):
     def items_not_on_page(self):
         """ Items of sequence outside of batch
         """
-        return self._sequence[:self.first] + self._sequence[self.end:]
+        return list(self._sequence[:self.first])\
+            + list(self._sequence[self.end:])
 
     @property
     def next_item_count(self):
