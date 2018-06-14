@@ -78,8 +78,8 @@ class BaseBatch(object):
     @property
     def navlist(self):
         """ Pagenumber list for creating batch links """
-        start = max(self.pagenumber - round(self.pagerange / 2), 1)
-        end = min(start + self.pagerange - 1, self.lastpage)
+        start = int(max(self.pagenumber - round(self.pagerange / 2), 1))
+        end = int(min(start + self.pagerange - 1, self.lastpage))
         return range(start, end + 1)
 
     def getPagenumber(self):

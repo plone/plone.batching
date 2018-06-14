@@ -46,12 +46,12 @@ def calculate_pagerange(pagenumber, numpages, pagerange):
     pagerangestart = max(1, round(pagenumber - (pagerange - 1) / 2))
     # Making sure the list does not expand beyond the last page
     pagerangeend = min(round(pagenumber + (pagerange - 1) / 2), numpages) + 1
-    return pagerange, pagerangestart, pagerangeend
+    return int(pagerange), int(pagerangestart), int(pagerangeend)
 
 
 def calculate_quantum_leap_gap(numpages, pagerange):
     """ Find the QuantumLeap gap. Current width of list is 6 clicks (30/5) """
-    return round(max(1, round(float(numpages - pagerange) / 30.)) * 5)
+    return int(round(max(1, round(float(numpages - pagerange) / 30.)) * 5))
 
 
 def calculate_leapback(pagenumber, numpages, pagerange):
