@@ -42,7 +42,7 @@ class PloneBatchView(BatchView):
         query_params = {}
         query_params.update(self.request.form)
         if self.batchformkeys:
-            for key in query_params.keys():
+            for key in list(query_params.keys()):
                 if key not in self.batchformkeys:
                     del query_params[key]
         if omit_params:

@@ -14,7 +14,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Python 3 fixes.
+  [thet]
 
 
 1.1.3 (2018-06-04)
