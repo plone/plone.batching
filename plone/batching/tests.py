@@ -12,6 +12,7 @@ from plone.batching.utils import calculate_quantum_leap_gap
 from plone.batching.utils import opt
 from zope.component.testing import setUp
 from zope.component.testing import tearDown
+
 import doctest
 import unittest
 
@@ -70,6 +71,43 @@ class TestBatch(unittest.TestCase):
     def test_previous_first(self):
         batch = BaseBatch(range(20), 5)
         self.assertFalse(batch.previous)
+
+    def test_navlist_no_pagerange(self):
+        # Well, actually with a default pagerange (7)
+        # greater than the number of pages: all pages should be displayed
+
+        for start in range(20):
+            batch = BaseBatch(range(20), 5, start)
+            self.assertListEqual(list(batch.navlist), [1, 2, 3, 4])
+
+    def test_navlist_with_pagerange(self):
+        # Until we reach page 3 we have 3 pages centered on 2
+        for start in range(0, 10):
+            batch = BaseBatch(range(20), 5, start, pagerange=3)
+            self.assertListEqual(
+                list(batch.navlist),
+                [1, 2, 3],
+                'Failing when starting at {}'.format(start)
+            )
+
+        # then we have 3 pages centered on page 3
+        for start in range(10, 15):
+            batch = BaseBatch(range(20), 5, start, pagerange=3)
+            self.assertListEqual(
+                list(batch.navlist),
+                [2, 3, 4],
+                'Failing when starting at {}'.format(start)
+            )
+
+        # XXX I consider this an errorm it should be [2, 3, 4]
+        # when we are at the last page we have two pages starting at 3
+        for start in range(15, 20):
+            batch = BaseBatch(range(20), 5, start, pagerange=3)
+            self.assertListEqual(
+                list(batch.navlist),
+                [3, 4],
+                'Failing when starting at {}'.format(start)
+            )
 
     def test_previous(self):
         batch = BaseBatch(range(20), 5, 5)
