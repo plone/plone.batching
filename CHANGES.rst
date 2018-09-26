@@ -14,6 +14,8 @@ New features:
 
 Bug fixes:
 
+- Fix navlist different in Python2 and Python 3 (Refs. #21)
+  [ale-rt]
 - Python 3 fixes.
   [thet]
 
