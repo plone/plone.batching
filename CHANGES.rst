@@ -4,18 +4,11 @@ Changelog
 1.1.4 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
 - Fix navlist different in Python2 and Python 3 (Refs. #21)
   [ale-rt]
+
 - Python 3 fixes.
   [thet]
 
