@@ -203,6 +203,14 @@ class TestBatch(unittest.TestCase):
         batch = BaseBatch(range(12), 10)
         self.assertEquals(batch.multiple_pages, True)
 
+    def test_multiple_pages_orphan(self):
+        """sequence with orphans"""
+        self.assertFalse(BaseBatch(range(20), 20, orphan=0).multiple_pages)
+        self.assertTrue(BaseBatch(range(21), 20, orphan=0).multiple_pages)
+        self.assertFalse(BaseBatch(range(21), 20, orphan=1).multiple_pages)
+        self.assertFalse(BaseBatch(range(22), 20, orphan=2).multiple_pages)
+        self.assertTrue(BaseBatch(range(22), 20, orphan=1).multiple_pages)
+
     def test_pagenumber_never_over_numpages(self):
         """computed _pagenumber is never > numpages, this
            makes previous_pages not fail."""
