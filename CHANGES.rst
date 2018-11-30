@@ -8,6 +8,14 @@ Changelog
 
 .. towncrier release notes start
 
+1.1.5 (2018-11-29)
+------------------
+
+Bug fixes:
+
+
+- Do not show batch navigation for single page with orphan. [maurits] (#9)
+
 
 1.1.4 (2018-09-27)
 ------------------
