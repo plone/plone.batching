@@ -14,6 +14,7 @@ setup(
         open("docs/usage.rst").read(),
     ]),
     classifiers=[
+        "Development Status :: 5 - Production/Stable",
         "Framework :: Plone",
         "Framework :: Plone :: 5.0",
         "Framework :: Plone :: 5.1",
