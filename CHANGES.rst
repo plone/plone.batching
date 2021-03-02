@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+1.1.7 (2021-03-02)
+------------------
+
+New features:
+
+
+- Include request form parameters from parent request to allow batching in plone.app.standardtiles and filtering with collective.collectionfilter.
+  [agitator] (#26)
+
+
 1.1.6 (2020-04-20)
 ------------------
 
