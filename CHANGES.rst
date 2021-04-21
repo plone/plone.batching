@@ -8,6 +8,23 @@ Changelog
 
 .. towncrier release notes start
 
+2.0.0a1 (2021-04-21)
+--------------------
+
+Breaking changes:
+
+
+- Update for Plone 6 with Bootstrap markup
+  [petschki, agitator] (#28)
+
+
+New features:
+
+
+- Include request form parameters from parent request to allow batching in plone.app.standardtiles and filtering with collective.collectionfilter.
+  [agitator] (#26)
+
+
 1.1.6 (2020-04-20)
 ------------------
 
