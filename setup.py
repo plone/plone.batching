@@ -25,6 +25,7 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
     ],
     keywords='Plone',
     author='Plone Foundation',
@@ -37,7 +38,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'setuptools',
-        'Zope2',
+        'Zope',
     ],
     entry_points="""
     [z3c.autoinclude.plugin]
