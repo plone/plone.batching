@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.batching.batch import BaseBatch
 from plone.batching.batch import QuantumBatch
 from plone.batching.browser import BatchMacrosView
@@ -87,7 +86,7 @@ class TestBatch(unittest.TestCase):
             self.assertListEqual(
                 list(batch.navlist),
                 [1, 2, 3],
-                'Failing when starting at {}'.format(start)
+                f'Failing when starting at {start}'
             )
 
         # then we have 3 pages centered on page 3
@@ -96,7 +95,7 @@ class TestBatch(unittest.TestCase):
             self.assertListEqual(
                 list(batch.navlist),
                 [2, 3, 4],
-                'Failing when starting at {}'.format(start)
+                f'Failing when starting at {start}'
             )
 
         # XXX I consider this an errorm it should be [2, 3, 4]
@@ -106,7 +105,7 @@ class TestBatch(unittest.TestCase):
             self.assertListEqual(
                 list(batch.navlist),
                 [3, 4],
-                'Failing when starting at {}'.format(start)
+                f'Failing when starting at {start}'
             )
 
     def test_previous(self):
@@ -191,17 +190,17 @@ class TestBatch(unittest.TestCase):
     def test_multiple_pages_smaller(self):
         """sequence smaller than batchsize"""
         batch = BaseBatch(range(12), 20)
-        self.assertEquals(batch.multiple_pages, False)
+        self.assertEqual(batch.multiple_pages, False)
 
     def test_multiple_pages_equals(self):
         """sequence equals batchsize"""
         batch = BaseBatch(range(12), 12)
-        self.assertEquals(batch.multiple_pages, False)
+        self.assertEqual(batch.multiple_pages, False)
 
     def test_multiple_pages_longer(self):
         """sequence longer than batchsize"""
         batch = BaseBatch(range(12), 10)
-        self.assertEquals(batch.multiple_pages, True)
+        self.assertEqual(batch.multiple_pages, True)
 
     def test_multiple_pages_orphan(self):
         """sequence with orphans"""
@@ -215,12 +214,12 @@ class TestBatch(unittest.TestCase):
         """computed _pagenumber is never > numpages, this
            makes previous_pages not fail."""
         batch = BaseBatch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 9)
-        self.assertEquals(list(batch.previous_pages), [1, 2, 3])
-        self.assertEquals(batch._pagenumber, 4)
+        self.assertEqual(list(batch.previous_pages), [1, 2, 3])
+        self.assertEqual(batch._pagenumber, 4)
         # works especially with orphan
         batch = BaseBatch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 9, orphan=2)
-        self.assertEquals(list(batch.previous_pages), [1, 2])
-        self.assertEquals(batch._pagenumber, 3)
+        self.assertEqual(list(batch.previous_pages), [1, 2])
+        self.assertEqual(batch._pagenumber, 3)
 
 
 class TestQuantumBatch(unittest.TestCase):
@@ -231,7 +230,7 @@ class TestQuantumBatch(unittest.TestCase):
         self.assertEqual(list(qbatch.leapforward), [54])
 
 
-class DummyTemplate(object):
+class DummyTemplate:
     macros = 'here are PT macros normally'
 
     def __call__(self):
@@ -280,11 +279,11 @@ class TestBrowser(unittest.TestCase):
 def test_suite():
     suite = unittest.TestSuite()
     suite.addTests([
-        unittest.makeSuite(TestUtilsOpt),
-        unittest.makeSuite(TestUtils),
-        unittest.makeSuite(TestBatch),
-        unittest.makeSuite(TestBrowser),
-        unittest.makeSuite(TestQuantumBatch),
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestUtilsOpt),
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestUtils),
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestBatch),
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestBrowser),
+        unittest.defaultTestLoader.loadTestsFromTestCase(TestQuantumBatch),
         doctest.DocFileSuite('batching.rst',
                              package='plone.batching',
                              optionflags=doctest.ELLIPSIS,

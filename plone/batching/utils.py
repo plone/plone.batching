@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 def opt(start, end, size, orphan, sequence_length):
     """ Calculate start, end, batchsize
     """

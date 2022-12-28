@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Plone batching documentation build configuration file, created by
 # sphinx-quickstart on Mon Dec 19 20:02:24 2011.
@@ -40,8 +39,8 @@ source_suffix = '.rst'
 master_doc = 'README'
 
 # General information about the project.
-project = u'Plone batching'
-copyright = u'2011, Tom Gross'
+project = 'Plone batching'
+copyright = '2011, Tom Gross'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -183,8 +182,8 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('README', 'Plonebatching.tex', u'Plone batching Documentation',
-   u'Tom Gross', 'manual'),
+  ('README', 'Plonebatching.tex', 'Plone batching Documentation',
+   'Tom Gross', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -213,8 +212,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('README', 'plonebatching', u'Plone batching Documentation',
-     [u'Tom Gross'], 1)
+    ('README', 'plonebatching', 'Plone batching Documentation',
+     ['Tom Gross'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -227,8 +226,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('README', 'Plonebatching', u'Plone batching Documentation',
-   u'Tom Gross', 'Plonebatching', 'One line description of project.',
+  ('README', 'Plonebatching', 'Plone batching Documentation',
+   'Tom Gross', 'Plonebatching', 'One line description of project.',
    'Miscellaneous'),
 ]
 

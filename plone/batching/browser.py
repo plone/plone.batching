@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ZTUtils import make_query
@@ -56,7 +55,7 @@ class PloneBatchView(BatchView):
 
         start = max(pagenumber - 1, 0) * self.batch.pagesize
         query_params[self.batch.b_start_str] = start
-        url = u"{0}?{1}".format(self.request.ACTUAL_URL, make_query(query_params))
+        url = f"{self.request.ACTUAL_URL}?{make_query(query_params)}"
         return url
 
 

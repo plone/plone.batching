@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.batching.interfaces import IBatch
 from plone.batching.utils import calculate_leapback
 from plone.batching.utils import calculate_leapforward
@@ -8,7 +7,7 @@ from zope.interface import implementer
 
 
 @implementer(IBatch)
-class BaseBatch(object):
+class BaseBatch:
     """ A sequence batch splits up a large number of items over multiple pages
     """
 
@@ -273,11 +272,11 @@ class QuantumBatch(BaseBatch):
                       in the navigation list for big results.
         """
         self.quantumleap = quantumleap
-        super(QuantumBatch, self).__init__(sequence, size, start, end, orphan,
+        super().__init__(sequence, size, start, end, orphan,
                                            overlap, pagerange)
 
     def initialize(self, start, end, size):
-        super(QuantumBatch, self).initialize(start, end, size)
+        super().initialize(start, end, size)
         if self.quantumleap:
             self.leapback = calculate_leapback(
                 self.pagenumber, self.numpages, self.pagerange)
