@@ -21,3 +21,6 @@ showcontent = true
 
 [tool.isort]
 profile = "plone"
+
+[tool.black]
+target-version = ["py38"]
