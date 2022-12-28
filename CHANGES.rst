@@ -208,5 +208,5 @@ Fixes:
 1.0a1 (2012-04-25)
 ------------------
 
-- Factored out Plone batching implementation to seperate egg (PLIP #12235)
+- Factored out Plone batching implementation to separate egg (PLIP #12235)
   [tom_gross]
