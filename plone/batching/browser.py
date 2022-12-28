@@ -2,6 +2,7 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ZTUtils import make_query
 
+
 BatchTemplate = ViewPageTemplateFile("batchnavigation.pt")
 BootstrapBatchTemplate = ViewPageTemplateFile("batchnavigation_bootstrap.pt")
 
