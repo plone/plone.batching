@@ -4,7 +4,7 @@ Batching
 Batching is the mechanism with which you split up a large dataset over multiple pages.
 The batching implementation discussed here has many features to help with constructing templates.
 
-A basic batch is created using a few paramenters.
+A basic batch is created using a few parameters.
 
 ::
 
@@ -122,7 +122,7 @@ We can also ask if there are any next or previous pages.
   False
 
 You might want to display the next item count.
-This can be usefull in case the batch is not exactly divisible by the pagesize.
+This can be useful in case the batch is not exactly divisible by the pagesize.
 
 ::
 
@@ -185,7 +185,7 @@ To make sure you will not show the links twice (once in the navlist and once for
   >>> batch.show_link_to_last
   False
 
-For extra visual smoothness you might also want to display an elipses next to your quicklink to the first page.
+For extra visual smoothness you might also want to display an ellipses next to your quicklink to the first page.
 
 ::
 
@@ -203,7 +203,7 @@ This should only be done in case the second page is not in the navigation list.
   >>> batch.second_page_not_in_navlist
   False
 
-The same goes for the showing an elipses before the last link.
+The same goes for the showing an ellipses before the last link.
 
 ::
 
@@ -215,7 +215,7 @@ The same goes for the showing an elipses before the last link.
   >>> batch.before_last_page_not_in_navlist
   False
 
-To make displaying the links to next and previous pages even easier you can also get two seperate navlist for both of them.
+To make displaying the links to next and previous pages even easier you can also get two separate navlist for both of them.
 
 ::
 
@@ -235,4 +235,3 @@ To make displaying the links to next and previous pages even easier you can also
   >>> batch.pagenumber = batch.firstpage + 1
   >>> list(batch.previous_pages)
   [1]
-

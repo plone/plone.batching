@@ -17,15 +17,15 @@ class IBatch(Interface):
     )
 
     multiple_pages = zope.schema.Bool(
-        title="Boolean indicating wheter there are multiple pages or not"
+        title="Boolean indicating whether there are multiple pages or not"
     )
 
     has_next = zope.schema.Bool(
-        title="Indicator for wheter there is a page after the current one"
+        title="Indicator for whether there is a page after the current one"
     )
 
     has_previous = zope.schema.Bool(
-        title="Indicator for wheter there is a page after the current one"
+        title="Indicator for whether there is a page after the current one"
     )
 
     previouspage = zope.schema.Int(title="The number of the previous page")
@@ -51,7 +51,7 @@ class IBatch(Interface):
     )
 
     islastpage = zope.schema.Bool(
-        title="Boolean indicating wheter the current page is the last page"
+        title="Boolean indicating whether the current page is the last page"
     )
 
     previous_pages = zope.schema.List(
