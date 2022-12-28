@@ -8,14 +8,13 @@ BootstrapBatchTemplate = ViewPageTemplateFile("batchnavigation_bootstrap.pt")
 
 
 class BatchMacrosView(BrowserView):
-
     @property
     def macros(self):
         return self.template.macros
 
 
 class BatchView(BrowserView):
-    """ View class for browser navigation  (classic) """
+    """View class for browser navigation  (classic)"""
 
     index = BatchTemplate
     batch = None
@@ -37,8 +36,7 @@ class BootstrapBatchView(BatchView):
 
 
 class PloneBatchView(BatchView):
-
-    def make_link(self, pagenumber=None, omit_params=['ajax_load']):
+    def make_link(self, pagenumber=None, omit_params=["ajax_load"]):
         # Include request form parameters from parent request
         query_params = {}
         if "PARENT_REQUEST" in self.request:
@@ -58,7 +56,6 @@ class PloneBatchView(BatchView):
         query_params[self.batch.b_start_str] = start
         url = f"{self.request.ACTUAL_URL}?{make_query(query_params)}"
         return url
-
 
 
 class PloneBootstrapBatchView(BootstrapBatchView, PloneBatchView):
