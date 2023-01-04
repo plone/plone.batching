@@ -1,5 +1,10 @@
-
+# Generated from:
+# https://github.com/plone/meta/tree/master/config/default
 [check-manifest]
 additional-ignores = [
-    "conf.py"
-]
+    "conf.py",
+    ]
+
+[meta]
+template = "default"
+commit-id = "6db85564"
