@@ -1,21 +1,20 @@
-# -*- coding: utf-8 -*-
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from ZTUtils import make_query
+
 
 BatchTemplate = ViewPageTemplateFile("batchnavigation.pt")
 BootstrapBatchTemplate = ViewPageTemplateFile("batchnavigation_bootstrap.pt")
 
 
 class BatchMacrosView(BrowserView):
-
     @property
     def macros(self):
         return self.template.macros
 
 
 class BatchView(BrowserView):
-    """ View class for browser navigation  (classic) """
+    """View class for browser navigation  (classic)"""
 
     index = BatchTemplate
     batch = None
@@ -37,8 +36,7 @@ class BootstrapBatchView(BatchView):
 
 
 class PloneBatchView(BatchView):
-
-    def make_link(self, pagenumber=None, omit_params=['ajax_load']):
+    def make_link(self, pagenumber=None, omit_params=["ajax_load"]):
         # Include request form parameters from parent request
         query_params = {}
         if "PARENT_REQUEST" in self.request:
@@ -56,9 +54,8 @@ class PloneBatchView(BatchView):
 
         start = max(pagenumber - 1, 0) * self.batch.pagesize
         query_params[self.batch.b_start_str] = start
-        url = u"{0}?{1}".format(self.request.ACTUAL_URL, make_query(query_params))
+        url = f"{self.request.ACTUAL_URL}?{make_query(query_params)}"
         return url
-
 
 
 class PloneBootstrapBatchView(BootstrapBatchView, PloneBatchView):
