@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from plone.batching.batch import BaseBatch
 from plone.batching.batch import QuantumBatch
 from plone.batching.browser import BatchMacrosView
@@ -18,8 +17,7 @@ import unittest
 
 
 class TestUtilsOpt(unittest.TestCase):
-    """ Test utils of plone.batching
-    """
+    """Test utils of plone.batching"""
 
     def test_opt_standard(self):
         self.assertEqual(opt(1, 0, 5, 0, 100), (1, 5, 5))
@@ -46,7 +44,6 @@ class TestUtilsOpt(unittest.TestCase):
 
 
 class TestUtils(unittest.TestCase):
-
     def test_calculate_pagenumber(self):
         self.assertEqual(calculate_pagenumber(5, 2), 3)
 
@@ -67,7 +64,6 @@ class TestUtils(unittest.TestCase):
 
 
 class TestBatch(unittest.TestCase):
-
     def test_previous_first(self):
         batch = BaseBatch(range(20), 5)
         self.assertFalse(batch.previous)
@@ -85,18 +81,14 @@ class TestBatch(unittest.TestCase):
         for start in range(0, 10):
             batch = BaseBatch(range(20), 5, start, pagerange=3)
             self.assertListEqual(
-                list(batch.navlist),
-                [1, 2, 3],
-                'Failing when starting at {}'.format(start)
+                list(batch.navlist), [1, 2, 3], f"Failing when starting at {start}"
             )
 
         # then we have 3 pages centered on page 3
         for start in range(10, 15):
             batch = BaseBatch(range(20), 5, start, pagerange=3)
             self.assertListEqual(
-                list(batch.navlist),
-                [2, 3, 4],
-                'Failing when starting at {}'.format(start)
+                list(batch.navlist), [2, 3, 4], f"Failing when starting at {start}"
             )
 
         # XXX I consider this an errorm it should be [2, 3, 4]
@@ -104,9 +96,7 @@ class TestBatch(unittest.TestCase):
         for start in range(15, 20):
             batch = BaseBatch(range(20), 5, start, pagerange=3)
             self.assertListEqual(
-                list(batch.navlist),
-                [3, 4],
-                'Failing when starting at {}'.format(start)
+                list(batch.navlist), [3, 4], f"Failing when starting at {start}"
             )
 
     def test_previous(self):
@@ -121,7 +111,6 @@ class TestBatch(unittest.TestCase):
 
     def test_getitem_resultcount(self):
         class MySeq(list):
-
             @property
             def actual_result_count(self):
                 return len(self) + 1
@@ -155,9 +144,10 @@ class TestBatch(unittest.TestCase):
 
     def test_items_not_on_page(self):
         batch = BaseBatch(range(20), 5, start=5)
-        self.assertEqual(batch.items_not_on_page,
-                         [0, 1, 2, 3, 4, 10, 11, 12,
-                          13, 14, 15, 16, 17, 18, 19])
+        self.assertEqual(
+            batch.items_not_on_page,
+            [0, 1, 2, 3, 4, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+        )
         self.assertEqual(list(batch), [5, 6, 7, 8, 9])
 
     def test_batch_bsize(self):
@@ -191,17 +181,17 @@ class TestBatch(unittest.TestCase):
     def test_multiple_pages_smaller(self):
         """sequence smaller than batchsize"""
         batch = BaseBatch(range(12), 20)
-        self.assertEquals(batch.multiple_pages, False)
+        self.assertEqual(batch.multiple_pages, False)
 
     def test_multiple_pages_equals(self):
         """sequence equals batchsize"""
         batch = BaseBatch(range(12), 12)
-        self.assertEquals(batch.multiple_pages, False)
+        self.assertEqual(batch.multiple_pages, False)
 
     def test_multiple_pages_longer(self):
         """sequence longer than batchsize"""
         batch = BaseBatch(range(12), 10)
-        self.assertEquals(batch.multiple_pages, True)
+        self.assertEqual(batch.multiple_pages, True)
 
     def test_multiple_pages_orphan(self):
         """sequence with orphans"""
@@ -213,81 +203,85 @@ class TestBatch(unittest.TestCase):
 
     def test_pagenumber_never_over_numpages(self):
         """computed _pagenumber is never > numpages, this
-           makes previous_pages not fail."""
+        makes previous_pages not fail."""
         batch = BaseBatch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 9)
-        self.assertEquals(list(batch.previous_pages), [1, 2, 3])
-        self.assertEquals(batch._pagenumber, 4)
+        self.assertEqual(list(batch.previous_pages), [1, 2, 3])
+        self.assertEqual(batch._pagenumber, 4)
         # works especially with orphan
         batch = BaseBatch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 9, orphan=2)
-        self.assertEquals(list(batch.previous_pages), [1, 2])
-        self.assertEquals(batch._pagenumber, 3)
+        self.assertEqual(list(batch.previous_pages), [1, 2])
+        self.assertEqual(batch._pagenumber, 3)
 
 
 class TestQuantumBatch(unittest.TestCase):
-
     def test_quantumbatch(self):
         qbatch = QuantumBatch(range(200), 3, start=120, quantumleap=1)
         self.assertEqual(list(qbatch.leapback), [18, 28])
         self.assertEqual(list(qbatch.leapforward), [54])
 
 
-class DummyTemplate(object):
-    macros = 'here are PT macros normally'
+class DummyTemplate:
+    macros = "here are PT macros normally"
 
     def __call__(self):
         return "Template called!"
 
 
 class TestBrowser(unittest.TestCase):
-
     def test_batchmacrosview(self):
         view = BatchMacrosView(None, None)
-        setattr(view, 'template', DummyTemplate())   # fake view creation
-        self.assertEqual(view.macros, 'here are PT macros normally')
+        setattr(view, "template", DummyTemplate())  # fake view creation
+        self.assertEqual(view.macros, "here are PT macros normally")
 
     def test_batchview_base(self):
         from zope.publisher.browser import TestRequest
+
         view = BatchView(None, TestRequest())
-        setattr(view, 'index', DummyTemplate())   # fake view creation
+        setattr(view, "index", DummyTemplate())  # fake view creation
         self.assertRaises(NotImplementedError, view.make_link, 0)
-        rendered = view([1, 2, 3], ['a', 'b'])
+        rendered = view([1, 2, 3], ["a", "b"])
         self.assertEqual(rendered, "Template called!")
         self.assertEqual(view.batch, [1, 2, 3])
-        self.assertEqual(view.batchformkeys, ['a', 'b'])
+        self.assertEqual(view.batchformkeys, ["a", "b"])
 
     def test_batchview_plone(self):
         from zope.publisher.browser import TestRequest
+
         batch = BaseBatch([1, 2, 3, 4, 5, 6, 7], 3)
-        request = TestRequest(form={'a': 'foo', 'c': 'bar'})
-        setattr(request, 'ACTUAL_URL', 'http://nohost/dummy')
+        request = TestRequest(form={"a": "foo", "c": "bar"})
+        setattr(request, "ACTUAL_URL", "http://nohost/dummy")
         view = PloneBatchView(None, request)
-        view(batch, ['a', 'b'])
-        self.assertEqual(view.make_link(3),
-                         'http://nohost/dummy?a=foo&b_start:int=6')
+        view(batch, ["a", "b"])
+        self.assertEqual(view.make_link(3), "http://nohost/dummy?a=foo&b_start:int=6")
 
     def test_batchview_plone_ajax_load(self):
         from zope.publisher.browser import TestRequest
+
         batch = BaseBatch([1, 2, 3, 4, 5, 6, 7], 3)
-        request = TestRequest(form={'a': 'foo', 'ajax_load': 1})
-        setattr(request, 'ACTUAL_URL', 'http://nohost/dummy')
+        request = TestRequest(form={"a": "foo", "ajax_load": 1})
+        setattr(request, "ACTUAL_URL", "http://nohost/dummy")
         view = PloneBatchView(None, request)
         view(batch)  # don't set allowed params (batchformkeys) like above.
         # allow all, but filter for ajax_load separately
-        self.assertEqual(view.make_link(3),
-                         'http://nohost/dummy?a=foo&b_start:int=6')
+        self.assertEqual(view.make_link(3), "http://nohost/dummy?a=foo&b_start:int=6")
 
 
 def test_suite():
     suite = unittest.TestSuite()
-    suite.addTests([
-        unittest.makeSuite(TestUtilsOpt),
-        unittest.makeSuite(TestUtils),
-        unittest.makeSuite(TestBatch),
-        unittest.makeSuite(TestBrowser),
-        unittest.makeSuite(TestQuantumBatch),
-        doctest.DocFileSuite('batching.rst',
-                             package='plone.batching',
-                             optionflags=doctest.ELLIPSIS,
-                             setUp=setUp, tearDown=tearDown),
-    ])
+    suite.addTests(
+        [
+            unittest.defaultTestLoader.loadTestsFromTestCase(TestUtilsOpt),
+            unittest.defaultTestLoader.loadTestsFromTestCase(TestUtils),
+            unittest.defaultTestLoader.loadTestsFromTestCase(TestBatch),
+            unittest.defaultTestLoader.loadTestsFromTestCase(TestBrowser),
+            unittest.defaultTestLoader.loadTestsFromTestCase(TestQuantumBatch),
+            doctest.DocFileSuite(
+                "batching.rst",
+                package="plone.batching",
+                optionflags=doctest.ELLIPSIS,
+                setUp=setUp,
+                tearDown=tearDown,
+            ),
+        ]
+    )
     return suite
