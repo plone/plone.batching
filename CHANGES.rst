@@ -8,6 +8,23 @@ Changelog
 
 .. towncrier release notes start
 
+2.0.1 (2023-01-26)
+------------------
+
+Bug fixes:
+
+
+- Unify repository configuration via github.com/plone/meta.
+  [gforcada] (#1)
+
+
+Internal:
+
+
+- Update configuration for default Plone meta.
+  [maurits] (#34)
+
+
 2.0.0 (2022-11-30)
 ------------------
 
