@@ -8,6 +8,18 @@ Changelog
 
 .. towncrier release notes start
 
+2.0.2 (2023-02-07)
+------------------
+
+Bug fixes:
+
+
+- Declare all dependencies, as reported by z3c.dependencychecker.
+  [gforcada] (#1)
+- Update tox configuration with dependencies test environments.
+  [gforcada] (#1)
+
+
 2.0.1 (2023-01-26)
 ------------------
 
