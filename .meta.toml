@@ -13,3 +13,6 @@ commit-id = "40520c52"
 mappings = [
     "Zope = ['Products.Five', 'ZTUtils']",
     ]
+
+[tests]
+gha = true
