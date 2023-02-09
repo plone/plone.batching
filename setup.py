@@ -10,7 +10,7 @@ setup(
     description="Batching facilities used in Plone.",
     long_description="\n".join(
         [
-            open('README.rst').read(),
+            open("README.rst").read(),
             open("CHANGES.rst").read(),
             open("docs/usage.rst").read(),
         ]
