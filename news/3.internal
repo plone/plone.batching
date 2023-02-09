@@ -1,0 +1,3 @@
+Test that pre-commit.ci is used, and our global linting workflow not.
+See https://github.com/plone/plone.batching/pull/39#issuecomment-1423879472
+[maurits]
