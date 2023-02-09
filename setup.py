@@ -1,13 +1,14 @@
-from setuptools import find_packages
 from setuptools import setup
+from setuptools import find_packages
 
 
 version = "2.0.3.dev0"
 
+
+
 setup(
     name="plone.batching",
     version=version,
-    description="Batching facilities used in Plone.",
     long_description="\n".join(
         [
             open("README.rst").read(),
@@ -28,7 +29,7 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
-        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.11"
     ],
     keywords="Plone",
     author="Plone Foundation",
