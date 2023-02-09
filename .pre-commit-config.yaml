@@ -1,3 +1,7 @@
+ci:
+    autofix_prs: false
+    autoupdate_schedule: monthly
+
 # Generated from:
 # https://github.com/plone/meta/tree/master/config/default
 repos:
