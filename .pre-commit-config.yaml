@@ -9,12 +9,12 @@ repos:
     rev: 5.12.0
     hooks:
     -   id: isort
--   repo: https://github.com/ambv/black
+-   repo: https://github.com/psf/black
     rev: 23.1.0
     hooks:
     -   id: black
 -   repo: https://github.com/collective/zpretty
-    rev: 2.4.1
+    rev: 3.0.1
     hooks:
     -   id: zpretty
 -   repo: https://github.com/PyCQA/flake8
