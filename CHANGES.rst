@@ -8,6 +8,18 @@ Changelog
 
 .. towncrier release notes start
 
+2.0.3 (2023-02-22)
+------------------
+
+Internal:
+
+
+- Use (GitHub) organization level linting workflow.
+  [gforcada] (#1)
+- Update package config to use pre-commit.
+  [maurits] (#2)
+
+
 2.0.2 (2023-02-07)
 ------------------
 
