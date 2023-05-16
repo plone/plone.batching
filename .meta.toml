@@ -8,11 +8,3 @@ additional-ignores = [
 [meta]
 template = "default"
 commit-id = "12f48b08"
-
-[dependencies]
-mappings = [
-    "Zope = ['Products.Five', 'ZTUtils']",
-    ]
-
-[tests]
-gha = true
