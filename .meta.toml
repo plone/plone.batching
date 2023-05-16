@@ -7,7 +7,7 @@ additional-ignores = [
 
 [meta]
 template = "default"
-commit-id = "e42131fe"
+commit-id = "12f48b08"
 
 [dependencies]
 mappings = [
