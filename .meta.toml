@@ -1,10 +1,10 @@
 # Generated from:
 # https://github.com/plone/meta/tree/master/config/default
-[check-manifest]
-additional-ignores = [
-    "conf.py",
-    ]
+[setup]
+check_manifest_ignore = """
+    conf.py
+"""
 
 [meta]
 template = "default"
-commit-id = "12f48b08"
+commit-id = "50c0e759"
