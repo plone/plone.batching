@@ -7,4 +7,4 @@ check_manifest_ignore = """
 
 [meta]
 template = "default"
-commit-id = "50c0e759"
+commit-id = "15649a3d"
