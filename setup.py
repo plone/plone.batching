@@ -7,7 +7,7 @@ version = "2.0.6.dev0"
 setup(
     name="plone.batching",
     version=version,
-    description="Batching facilities used in Plone.",
+    description="Batching facilities used in Plone",
     long_description="\n".join(
         [
             open("README.rst").read(),
