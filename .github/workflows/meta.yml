@@ -1,6 +1,6 @@
 # Generated from:
 # https://github.com/plone/meta/tree/master/config/default
-name: Coverage
+name: Meta
 on:
   push:
     branches:
@@ -13,5 +13,11 @@ on:
   workflow_dispatch:
 
 jobs:
+  qa:
+    uses: plone/meta/.github/workflows/qa.yml@master
+  test:
+    uses: plone/meta/.github/workflows/test.yml@master
   coverage:
     uses: plone/meta/.github/workflows/coverage.yml@master
+  dependencies:
+    uses: plone/meta/.github/workflows/dependencies.yml@master
