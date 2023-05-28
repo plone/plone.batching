@@ -1,4 +1,0 @@
-# Generated from:
-# https://github.com/plone/meta/tree/master/config/default
-pipdeptree==2.3.3
-z3c.dependencychecker==2.10
