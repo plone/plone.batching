@@ -1,5 +1,6 @@
 # Generated from:
 # https://github.com/plone/meta/tree/master/config/default
+# See the inline comments on how to expand/tweak this configuration file
 [setup]
 check_manifest_ignore = """
     conf.py
@@ -7,4 +8,4 @@ check_manifest_ignore = """
 
 [meta]
 template = "default"
-commit-id = "a46c5cb1"
+commit-id = "69cb8571"
