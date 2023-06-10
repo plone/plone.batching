@@ -1,20 +1,24 @@
+from pathlib import Path
 from setuptools import find_packages
 from setuptools import setup
 
 
 version = "2.0.6.dev0"
 
+long_description = (
+    f"{Path('README.rst').read_text()}\n"
+    f"{Path('CHANGES.rst').read_text()}\n"
+    f"{(Path('docs') / 'usage.rst').read_text()}"
+)
+
 setup(
     name="plone.batching",
     version=version,
     description="Batching facilities used in Plone",
-    long_description="\n".join(
-        [
-            open("README.rst").read(),
-            open("CHANGES.rst").read(),
-            open("docs/usage.rst").read(),
-        ]
-    ),
+    long_description=long_description,
+    long_description_content_type="text/x-rst",
+    # Get more strings from
+    # https://pypi.org/classifiers/
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
