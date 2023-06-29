@@ -3,6 +3,9 @@ from setuptools import find_packages
 from setuptools import setup
 
 
+
+
+
 version = "2.0.7.dev0"
 
 long_description = (
@@ -50,6 +53,7 @@ setup(
         "Zope",
         "zope.interface",
         "zope.schema",
+        "Products.CMFPlone"
     ],
     extras_require={
         "test": [
