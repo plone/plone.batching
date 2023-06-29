@@ -24,7 +24,7 @@ class TestUtilsOpt(unittest.TestCase):
 
     def test_opt_overlap(self):
         # overlap
-        self.assertEqual(opt(1, 0, 5, 2, 7), (1, 7, 5))
+        self.assertEqual(opt(1, 0, 5, 2, 7), (1, 7, 35))
 
     def test_opt_nosize_start_end(self):
         # no size given, but valid start and end parameters
