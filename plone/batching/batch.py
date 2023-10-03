@@ -11,7 +11,6 @@ class BaseBatch:
     """A sequence batch splits up a large number of items over multiple pages"""
 
     size = first = start = end = 0
-    navlist = []
     numpages = pagenumber = pagerange = pagenumber = 0
     orphan = overlap = 0
     b_start_str = "b_start"
