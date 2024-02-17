@@ -24,19 +24,46 @@ on:
 ##
 
 jobs:
-  qa:
-    uses: plone/meta/.github/workflows/qa.yml@main
-  test:
-    uses: plone/meta/.github/workflows/test.yml@main
-  coverage:
-    uses: plone/meta/.github/workflows/coverage.yml@main
-  dependencies:
-    uses: plone/meta/.github/workflows/dependencies.yml@main
-  release_ready:
-    uses: plone/meta/.github/workflows/release_ready.yml@main
-  circular:
-    uses: plone/meta/.github/workflows/circular.yml@main
 
+  test2:
+    name: Tests XML report
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+        os: ["ubuntu-latest"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: install OS packages
+        if: inputs.os-packages != ''
+        run: sudo apt-get install -y ${{ inputs.os-packages }}
+      - name: Cache packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('tox.ini') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-${{ matrix.python-version }}-
+            ${{ runner.os }}-pip-
+      - name: Install dependencies
+        run: python -m pip install tox
+      - name: Initialize tox
+        # the bash one-liner below does not work on Windows
+        if: contains(matrix.os, 'ubuntu')
+        run: |
+          if [ `tox list --no-desc -f init|wc -l` = 1 ]; then tox -e init;else true; fi
+      - name: Run tests
+        run: |
+          tox -e test -- --xml reports
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: success() || failure() # always run even if the previous step fails
+        with:
+          report_paths: 'reports/testreports/*.xml'
 ##
 # To modify the list of default jobs being created add in .meta.toml:
 # [github]
