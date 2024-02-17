@@ -20,6 +20,7 @@ class TestUtilsOpt(unittest.TestCase):
     """Test utils of plone.batching"""
 
     def test_opt_standard(self):
+        self.assertTrue(False)
         self.assertEqual(opt(1, 0, 5, 0, 100), (1, 5, 5))
 
     def test_opt_overlap(self):
