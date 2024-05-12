@@ -27,7 +27,9 @@ jobs:
   qa:
     uses: plone/meta/.github/workflows/qa.yml@main
   test:
-    uses: plone/meta/.github/workflows/test.yml@main
+    uses: plone/meta/.github/workflows/test-plone60.yml@multiple-pythons
+    with:
+      py-versions: '["3.11", "3.10"]'
   coverage:
     uses: plone/meta/.github/workflows/coverage.yml@main
   dependencies:
@@ -36,7 +38,6 @@ jobs:
     uses: plone/meta/.github/workflows/release_ready.yml@main
   circular:
     uses: plone/meta/.github/workflows/circular.yml@main
-
 ##
 # To modify the list of default jobs being created add in .meta.toml:
 # [github]
@@ -56,7 +57,6 @@ jobs:
 # [github]
 # os_dependencies = "git libxml2 libxslt"
 ##
-
 
 ##
 # Specify additional jobs in .meta.toml:
