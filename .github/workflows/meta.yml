@@ -27,7 +27,7 @@ jobs:
   qa:
     uses: plone/meta/.github/workflows/qa.yml@main
   test:
-    uses: plone/meta/.github/workflows/test.yml@main
+    uses: plone/meta/.github/workflows/test.yml@multiple-pythons
     with:
 
        py-versions: '["3.11", "3.10"]'
