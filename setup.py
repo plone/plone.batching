@@ -45,17 +45,11 @@ setup(
     zip_safe=False,
     python_requires=">=3.8",
     install_requires=[
-        "AccessControl",
         "setuptools",
         "Zope",
-        "zope.interface",
-        "zope.schema",
     ],
     extras_require={
-        "test": [
-            "zope.component",
-            "zope.publisher",
-        ],
+        "test": [],
     },
     entry_points="""
     [z3c.autoinclude.plugin]
