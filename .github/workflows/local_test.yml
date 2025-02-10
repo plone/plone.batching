@@ -1,0 +1,47 @@
+name: Tests with uv
+
+on:
+  # allow this workflow to be called
+  # by other workflows from other repositories
+  workflow_call:
+    inputs:
+      os-packages:
+        required: false
+        type: string
+      py-versions:
+        required: false
+        default: '["3.11", "3.10"]'
+        type: string
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Plone 6.0 / py${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python-version:
+          - 3.11
+          - 3.12
+          - 3.13
+        os: ["ubuntu-latest"]
+    env:
+      UV_PYTHON: ${{ matrix.python-version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: install tox
+        run: uv pip install tox tox-uv
+      - name: run tests
+        run: tox -e test-uv
