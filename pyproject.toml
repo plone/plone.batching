@@ -51,6 +51,9 @@ test = [
 Source = "https://github.com/plone/plone.batching"
 Issues = "https://github.com/plone/Products.CMFPlone/issues"
 Changelog = "https://github.com/plone/plone.batching/blob/master/CHANGES.rst"
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.rst", "CHANGES.rst"]}
 # END-MARKER-MANUAL-CONFIG
 
 [tool.towncrier]
@@ -214,7 +217,3 @@ ignore = [
 #  _your own configuration lines_
 #  """
 ##
-
-[tool.setuptools.dynamic]
-readme = {file = ["README.rst", "CHANGES.rst"]}
-
