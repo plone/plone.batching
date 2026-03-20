@@ -55,6 +55,8 @@ jobs:
         if [ `tox list --no-desc -f init|wc -l` = 1 ]; then ${{ steps.setup_uv.outputs['uvx-path'] }} --with tox-uv tox -e init;else true; fi
     - name: Test
       run: ${{ steps.setup_uv.outputs['uvx-path'] }} --with tox-uv tox -e ${{ matrix.config[2] }}
+    - name: Test
+      run: uvx --with tox-uv tox -e ${{ matrix.config[2] }}
 
 
 ##
