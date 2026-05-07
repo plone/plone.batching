@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.0 (2026-05-07)
+------------------
+
+Internal:
+
+
+- Update configuration files.
+  [plone devs]
+
+
 3.0.0a2 (2026-03-16)
 --------------------
 
