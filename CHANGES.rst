@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.3 (2026-11-10)
+------------------
+
+Bug fixes:
+
+
+- Declare only ``Batch`` public in the ``plone.batching`` module instead of opening the whole module to Restricted Python with ``allow_module``.
+  [maurits]
+
+
 3.0.2 (2026-11-03)
 ------------------
 
