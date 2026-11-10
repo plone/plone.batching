@@ -1,2 +1,0 @@
-Declare only ``Batch`` public in the ``plone.batching`` module instead of opening the whole module to Restricted Python with ``allow_module``.
-[maurits]
